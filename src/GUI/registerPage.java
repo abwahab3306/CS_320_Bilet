@@ -98,16 +98,10 @@ public class registerPage {
         });
 
 
-
         frame.setVisible(true);
 
         sendData();
     }
-
-    public String getName(){
-        return nameEntry.getName();
-    }
-
 
     public void sendData() {
         System.out.println("Usertype is " + usertype);
