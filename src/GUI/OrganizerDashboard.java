@@ -14,7 +14,8 @@ public class OrganizerDashboard {
         frame.setLayout(null);
         frame.setSize(1920,1080);
 
-        ImagePanel panel = new ImagePanel(new ImageIcon("C:\\Users\\hecem\\OneDrive\\Resimler\\Background3.jpg").getImage());
+//        ImagePanel panel = new ImagePanel(new ImageIcon("Background3.jpg").getImage());
+        JPanel panel = new JPanel();
         panel.setLayout(null);
         frame.getContentPane().add(panel);
 

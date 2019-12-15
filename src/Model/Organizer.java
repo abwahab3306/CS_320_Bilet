@@ -1,15 +1,19 @@
 package Model;
 
 public class Organizer implements Account {
-    private String name,lastname;
-    private String password;
-    private String email;
+    private int id;
+    private String name, lastname, password, email;
 
     public Organizer(String name, String lastname, String email, String password) {
         this.name = name;
         this.lastname = lastname;
         this.email = email;
         this.password = password;
+    }
+
+    @Override
+    public int getId() {
+        return id;
     }
 
     @Override
@@ -30,6 +34,11 @@ public class Organizer implements Account {
     @Override
     public String getPassword() {
         return this.password;
+    }
+
+    @Override
+    public void setId(int i) {
+        this.id = i;
     }
 
     @Override
