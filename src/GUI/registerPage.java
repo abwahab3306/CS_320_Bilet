@@ -22,7 +22,6 @@ public class registerPage {
         usertype = type;
 
         JFrame frame = new JFrame("REGISTER PAGE");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
         frame.setSize((int) dimension.getWidth(), (int) dimension.getHeight());
 

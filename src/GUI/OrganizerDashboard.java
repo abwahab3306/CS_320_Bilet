@@ -7,35 +7,36 @@ import java.awt.event.ActionListener;
 
 public class OrganizerDashboard {
 
-    public OrganizerDashboard(){
+    public OrganizerDashboard() {
 
         JFrame frame = new JFrame("ORGANIZER DASHBOARD");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setLayout(null);
-        frame.setSize(1920,1080);
 
-//        ImagePanel panel = new ImagePanel(new ImageIcon("Background3.jpg").getImage());
-        JPanel panel = new JPanel();
+        frame.setLayout(null);
+        Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+        frame.setSize((int) dimension.getWidth(), (int) dimension.getHeight());
+
+
+        ImagePanel panel = new ImagePanel(new ImageIcon("Background3.jpg").getImage());
         panel.setLayout(null);
         frame.getContentPane().add(panel);
 
         JLabel organizerName = new JLabel("Name: ");
         organizerName.setFont(new Font("Calibri", Font.PLAIN, 22));
-        organizerName.setBounds(100,100,100,100);
+        organizerName.setBounds(100, 100, 100, 100);
         panel.add(organizerName);
 
         JLabel organizerSurname = new JLabel("Surname: ");
         organizerSurname.setFont(new Font("Calibri", Font.PLAIN, 22));
-        organizerSurname.setBounds(100,200, 100,100);
+        organizerSurname.setBounds(100, 200, 100, 100);
         panel.add(organizerSurname);
 
         JLabel email = new JLabel("Email: ");
         email.setFont(new Font("Calibri", Font.PLAIN, 22));
-        email.setBounds(100, 300, 100,100);
+        email.setBounds(100, 300, 100, 100);
         panel.add(email);
 
         JButton createEvent = new JButton("Create Event");
-        createEvent.setBounds(100, 450, 130,50);
+        createEvent.setBounds(100, 450, 130, 50);
         panel.add(createEvent);
 
         JButton myEvents = new JButton("My Events");
@@ -59,7 +60,6 @@ public class OrganizerDashboard {
                 EventCreation newEvent = new EventCreation();
             }
         });
-
 
 
         frame.setVisible(true);
