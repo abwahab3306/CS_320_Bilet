@@ -4,6 +4,8 @@ import Database.InsertData;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -16,6 +18,7 @@ public class registerPage {
     private JTextField surnameEntry;
     private JTextField emailEntry;
     private JTextField passwordEntry;
+
 
     public registerPage(String type){
 
@@ -85,10 +88,26 @@ public class registerPage {
         panel.add(registerButton);
 
 
+        registerButton.addActionListener(new ActionListener() {
+            @Override
+                public void actionPerformed(ActionEvent e) {
+                    loginPage login = new loginPage(usertype);
+                    //OrganizerDashboard dashboard = new OrganizerDashboard();
+                    frame.setVisible(false);
+            }
+        });
+
+
+
         frame.setVisible(true);
 
         sendData();
     }
+
+    public String getName(){
+        return nameEntry.getName();
+    }
+
 
     public void sendData() {
         System.out.println("Usertype is " + usertype);
