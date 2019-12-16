@@ -6,5 +6,6 @@ public class loginPage {
     public loginPage(String type){
 
         usertype=type;
+        OrganizerDashboard dash = new OrganizerDashboard();
     }
 }

@@ -17,19 +17,19 @@ public class registerPage {
     private JTextField emailEntry;
     private JTextField passwordEntry;
 
-    public registerPage(String type){
+    public registerPage(String type) {
 
         usertype = type;
 
         JFrame frame = new JFrame("REGISTER PAGE");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(1920,1080);
+        Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+        frame.setSize((int) dimension.getWidth(), (int) dimension.getHeight());
 
-        ImagePanel panel = new ImagePanel(new ImageIcon("C:\\Users\\hecem\\IdeaProjects\\CS_320_Bilet-master\\Background.jpg").getImage());
+        ImagePanel panel = new ImagePanel(new ImageIcon("Background.jpg").getImage());
         frame.getContentPane().add(panel);
 
         JLabel welcomeMessage = new JLabel("Welcome to Bilet!");
-        welcomeMessage.setFont(new Font("Calibri",Font.ITALIC, 40));
+        welcomeMessage.setFont(new Font("Calibri", Font.ITALIC, 40));
         welcomeMessage.setBackground(Color.BLACK);
         welcomeMessage.setForeground(Color.PINK);
         welcomeMessage.setOpaque(true);
@@ -55,7 +55,7 @@ public class registerPage {
 
         surnameEntry = new JTextField("");
         surnameEntry.setFont(new Font("Calibri", Font.PLAIN, 22));
-        surnameEntry.setBounds(680, 310,300, 30);
+        surnameEntry.setBounds(680, 310, 300, 30);
         panel.add(surnameEntry);
 
 
@@ -81,27 +81,31 @@ public class registerPage {
 
 
         registerButton = new JButton("Register");
-        registerButton.setBounds(780,600, 100,50);
+        registerButton.setBounds(780, 600, 100, 50);
         panel.add(registerButton);
 
 
         frame.setVisible(true);
 
-        sendData();
-    }
-
-    public void sendData() {
-        System.out.println("Usertype is " + usertype);
         registerButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                if (usertype.equals("Organizer")) {
-                InsertData.insertAccount(true, nameEntry.getName(), surnameEntry.getName(), emailEntry.getText(), passwordEntry.getText());
-                } else {
-                    InsertData.insertAccount(false, nameEntry.getName(), surnameEntry.getName(), emailEntry.getText(), passwordEntry.getText());
-                }
+
+                sendData(usertype);
             }
         });
+    }
+
+    public void sendData(String usertype) {
+        System.out.println("Usertype is " + usertype);
+        if (usertype.equals("Organizer")) {
+            InsertData.insertAccount(true, nameEntry.getText(), surnameEntry.getText(), emailEntry.getText(), passwordEntry.getText());
+            System.out.println("name: " + nameEntry.getText() + "surname: " + surnameEntry.getText() + "email: " + emailEntry.getText() + "pass " + passwordEntry.getText());
+        } else {
+            InsertData.insertAccount(false, nameEntry.getText(), surnameEntry.getText(), emailEntry.getText(), passwordEntry.getText());
+            System.out.println("name: " + nameEntry.getText() + "surname: " + surnameEntry.getText() + "email: " + emailEntry.getText() + "pass " + passwordEntry.getText());
+        }
+
     }
 }

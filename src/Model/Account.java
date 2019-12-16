@@ -2,6 +2,8 @@ package Model;
 
 public interface Account {
 
+    int getId();
+
     String getName();
 
     String getLastname();
@@ -9,6 +11,8 @@ public interface Account {
     String getPassword();
 
     String getEmail();
+
+    void setId(int i);
 
     void setName(String s);
 

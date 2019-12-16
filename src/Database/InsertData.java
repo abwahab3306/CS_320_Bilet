@@ -25,6 +25,31 @@ public class InsertData {
                 surname + "','" + email + "','" + password + "')";
 
 
+        send(query);
+
+        table = null;
+        id = null;
+
+    }
+
+    public static void createEvent(String name, int organizerid, int ticketnums, int date, String location, int price, int ibanno) {
+
+        String query = "INSERT IGNORE INTO `sql7313897`.`events` (`event_id`, `name`, `organizer_id`, `number_of_tickets`, `date`, `location`, `price`, `iban_no_organizer`) VALUES (NULL,'" + name + "','" +
+                organizerid + "','" + ticketnums + "','" + date + "','" + location +  "','" + price + "','" + ibanno + "')";
+
+        send(query);
+
+
+    }
+
+    public static void buyTicket(int userid, int eventid, int num_of_ticket) {
+        String query = "INSERT IGNORE INTO `sql7313897`.`reservations` (`res_id`, `user_id`, `event_id`, `number_of_tickets`) VALUES (NULL,'" + userid + "','" +
+                eventid + "','" + num_of_ticket + "')";
+
+        send(query);
+    }
+
+    private static void send(String query) {
         try {
             DB_Connection connection = new DB_Connection();
             connection.insertData(query);
@@ -33,7 +58,5 @@ public class InsertData {
         } catch (Exception e) {
 
         }
-
     }
 }
-
