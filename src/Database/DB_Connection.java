@@ -6,26 +6,28 @@ public class DB_Connection {
 
     private static Connection conn;
     private static Statement stmt;
-    static final String USER = "cs320";
-    static final String PASS = "Yrj$bT}82^d)S2r";
+    //    private static final String USER = "sql7313897";
+//    private static final String PASS = "vAC2v1qeAK";
+
+    private static final String USER = "sql7315453";
+    private static final String PASS = "DDaLktyD5U";
+
+//    private static final String USER = "mohaabdev_ozan";
+//    private static final String PASS = "sifrebiletozan44";
 
 
-    public DB_Connection() {
+    public DB_Connection() throws SQLException {
 
-        String url = "jdbc:mysql://mohaabdev.com:3306/mohaabdev_cs320";
-
-
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection(url, USER, PASS);
-            System.out.println("Connection Successful");
-            conn.close();
-        } catch (Exception ex) {
-            System.out.println("Error" + ex);
+        String url = "jdbc:mysql://sql7.freesqldatabase.com:3306/sql7315453";
+//        String url = "jdbc:mysql://mohaabdev.com:3306/mohaabdev_bilet";
 
 
-        }
+        conn = DriverManager.getConnection(url, USER, PASS);
+        System.out.println("Database connection established");
+
+
     }
+
     public ResultSet send_query(String a, String... s) {
 
         ResultSet rs = null;

@@ -2,6 +2,8 @@ package GUI;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class loginPage {
 
@@ -11,13 +13,13 @@ public class loginPage {
     private JTextField mailEntry;
     private JTextField passwordEntry;
 
-    public loginPage(String type){
+    public loginPage(String type) {
 
-        usertype=type;
+        usertype = type;
 
         JFrame frame = new JFrame("LOGIN PAGE");
         //frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(1920,1080);
+        frame.setSize(1920, 1080);
 
         ImagePanel panel = new ImagePanel(new ImageIcon("Background.jpg").getImage());
         frame.getContentPane().add(panel);
@@ -44,9 +46,18 @@ public class loginPage {
 
 
         loginButton = new JButton("Login");
-        loginButton.setBounds(750,450, 100,50);
+        loginButton.setBounds(750, 450, 100, 50);
         panel.add(loginButton);
 
+
+        loginButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (type.equals("Organizer")) {
+                    OrganizerDashboard organizer = new OrganizerDashboard();
+                }
+            }
+        });
         frame.setVisible(true);
     }
 }

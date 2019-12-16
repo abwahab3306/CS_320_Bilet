@@ -23,7 +23,7 @@ public class main {
             connection.send_query("users", "user_id", "name", "surname", "email", "password");
             System.out.println("Current Organizers: ");
             connection.send_query("organizers", "organizer_id", "name", "surname", "email", "password");
-        } catch (Exception e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         } finally {
             if (connection != null) {
