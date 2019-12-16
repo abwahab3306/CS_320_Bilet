@@ -28,9 +28,6 @@ public class UserDashboard {
 
         JButton logout = new JButton("Logout");
         logout.setBounds(1300, 50, 100, 50);
-        logout.setOpaque(false);
-        logout.setContentAreaFilled(false);
-        logout.setBorderPainted(false);
         panel.add(logout);
 
         JLabel events = new JLabel("All Events");
