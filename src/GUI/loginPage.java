@@ -16,10 +16,10 @@ public class loginPage {
         usertype=type;
 
         JFrame frame = new JFrame("LOGIN PAGE");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        //frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(1920,1080);
 
-        ImagePanel panel = new ImagePanel(new ImageIcon("C:\\Users\\iremoykusezen\\Documents\\GitHub\\CS_320_Bilet\\Background.jpg").getImage());
+        ImagePanel panel = new ImagePanel(new ImageIcon("Background.jpg").getImage());
         frame.getContentPane().add(panel);
 
         JLabel email = new JLabel("E-mail:");
