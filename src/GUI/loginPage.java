@@ -1,5 +1,8 @@
 package GUI;
 
+import Model.Organizer;
+import Model.User;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -54,7 +57,12 @@ public class loginPage {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (type.equals("Organizer")) {
+
+//                    Organizer currentOrganizer = new Organizer(); authenticated user
                     OrganizerDashboard organizer = new OrganizerDashboard();
+                } else {
+//                    User currentUser = new User(); authenticated user
+//                    UserDashboard user = new UserDashboard();
                 }
             }
         });

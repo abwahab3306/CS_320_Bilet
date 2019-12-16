@@ -1,6 +1,8 @@
 package GUI;
 
 import Database.InsertData;
+import Model.Organizer;
+import Model.User;
 
 import javax.swing.*;
 import java.awt.*;
@@ -92,6 +94,11 @@ public class registerPage {
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
 
+                if(usertype.equals("Organizer")){
+                    User user = new User(name.getText(), surname.getText(), email.getText(), password.getText());}
+                    else{
+                    Organizer organizer = new Organizer(name.getText(), surname.getText(), email.getText(), password.getText());
+                }
                 sendData(usertype);
             }
         });
