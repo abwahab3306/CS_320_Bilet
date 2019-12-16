@@ -2,6 +2,8 @@ package GUI;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class loginPage {
 
@@ -48,5 +50,13 @@ public class loginPage {
         panel.add(loginButton);
 
         frame.setVisible(true);
+
+        loginButton.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                UserDashboard dashboard = new UserDashboard();
+            }
+        });
     }
 }
