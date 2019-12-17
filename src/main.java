@@ -19,10 +19,10 @@ public class main {
         instantiateJDBC();
         try {
             connection = new DB_Connection();
-            System.out.println("Current Users: ");
+           /* System.out.println("Current Users: ");
             connection.send_query("users", "user_id", "name", "surname", "email", "password");
             System.out.println("Current Organizers: ");
-            connection.send_query("organizers", "organizer_id", "name", "surname", "email", "password");
+            connection.send_query("organizers", "organizer_id", "name", "surname", "email", "password");*/
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {

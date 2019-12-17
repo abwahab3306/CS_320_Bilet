@@ -63,6 +63,7 @@ public class loginPage {
                 } else {
 //                    User currentUser = new User(); authenticated user
 //                    UserDashboard user = new UserDashboard();
+                    DetailedEvent event = new DetailedEvent();
                 }
             }
         });
