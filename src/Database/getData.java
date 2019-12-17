@@ -3,6 +3,7 @@ package Database;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 
 public class getData {
@@ -26,6 +27,16 @@ public class getData {
        }
     }
 
+    public static ResultSet get(String qurey){
+        ResultSet rs=null;
+        try{
+            rs = stmt.executeQuery(qurey);
+        }catch (Exception e){
+            System.out.println(e);
+        }
+        return rs;
+    }
+
     public static String getIBAN(String ID){
         String Iban = null;
         String qurey = "Select";
@@ -40,6 +51,64 @@ public class getData {
         return Iban;
     }
 
+    public static ResultSet etMyEvents(){
+        String qurey ="";
+      return get(qurey);
+    }
+
+    public static ArrayList<String> getMytickets(String qurey) throws SQLException {
+        ArrayList<String> mytickets = new ArrayList<String>();
+        ResultSet rs = get(qurey);
+        try {
+            while (rs.next()){
+
+            }
+        }
+         catch(SQLException e){
+
+        }
+        return mytickets;
+    }
+
+    public static ArrayList<String> getMyEvents(String qurey) throws SQLException {
+        ArrayList<String> myEvents = new ArrayList<String>();
+        ResultSet rs = get(qurey);
+        try {
+            while (rs.next()){
+
+            }
+        }
+        catch(SQLException e){
+
+        }
+        return myEvents;
+    }
+    public static ArrayList<String> getAllEvents(String qurey) throws SQLException {
+        ArrayList<String> myEvents = new ArrayList<String>();
+        ResultSet rs = get(qurey);
+        try {
+            while (rs.next()){
+
+            }
+        }
+        catch(SQLException e){
+
+        }
+        return myEvents;
+    }
+    public static ArrayList<String> getSoldtickts(String qurey) throws SQLException {
+        ArrayList<String> myEvents = new ArrayList<String>();
+        ResultSet rs = get(qurey);
+        try {
+            while (rs.next()){
+
+            }
+        }
+        catch(SQLException e){
+
+        }
+        return myEvents;
+    }
 
 }
 
