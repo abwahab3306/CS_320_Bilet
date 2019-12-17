@@ -17,7 +17,7 @@ public class DeleteData {
             DB_Connection connection = new DB_Connection();
             connection.insertData(query);
 
-        } catch (SQLException e) {
+        } catch (Exception e) {
 
         }
     }
