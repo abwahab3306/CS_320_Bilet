@@ -9,7 +9,7 @@ public class getData {
     private static Statement stmt;
     private static String table;
     private static String id;
-    public static boolean authenticator(String id, String Password, Boolean isOrganizer) throws SQLException {
+    public static boolean authenticator(String id, String Password, Boolean isOrganizer)  {
         if (isOrganizer) {
             table = "organizers";
             id = "organizer_id";
@@ -27,10 +27,16 @@ public class getData {
     }
 
     public static String getIBAN(String ID){
-        String Iban;
-        try {
-
+        String Iban = null;
+        String qurey = "Select";
+        try{
+            ResultSet rs = stmt.executeQuery(qurey);
+            Iban = rs.toString();
+        }catch (Exception e){
+            System.out.println(e);
         }
+
+
         return Iban;
     }
 

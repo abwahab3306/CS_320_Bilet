@@ -2,6 +2,7 @@ package Database;
 
 import java.sql.*;
 
+
 public class DB_Connection {
 
     private static Connection conn;
@@ -9,19 +10,22 @@ public class DB_Connection {
     //    private static final String USER = "sql7313897";
 //    private static final String PASS = "vAC2v1qeAK";
 
-    private static final String USER = "sql7315453";
+  /*  private static final String USER = "sql7315453";
     private static final String PASS = "DDaLktyD5U";
 
-//    private static final String USER = "mohaabdev_ozan";
-//    private static final String PASS = "sifrebiletozan44";
+    private static final String USER = "mohaabdev_ozan";
+    private static final String PASS = "sifrebiletozan44";
 
-
+*/
+    private static final String USER ="root";
+    private static final String PASS ="CTC@10cri";
     public DB_Connection() throws SQLException {
 
-        String url = "jdbc:mysql://sql7.freesqldatabase.com:3306/sql7315453";
-//        String url = "jdbc:mysql://mohaabdev.com:3306/mohaabdev_bilet";
+    //    String url = "jdbc:mysql://sql7.freesqldatabase.com:3306/sql7315453";
+     /*  String url = "jdbc:mysql://mohaabdev.com:3306/mohaabdev_bilet";
 
-
+*/
+        String url ="jdbc:mysql://localhost.com:3306";
         conn = DriverManager.getConnection(url, USER, PASS);
         System.out.println("Database connection established");
 
@@ -107,5 +111,7 @@ public class DB_Connection {
             }
         }
     }
+
+
 
 }
