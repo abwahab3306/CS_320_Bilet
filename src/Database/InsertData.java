@@ -1,4 +1,3 @@
-
 package Database;
 
 import java.sql.SQLException;
@@ -53,9 +52,7 @@ public class InsertData {
         try {
             DB_Connection connection = new DB_Connection();
             connection.insertData(query);
-            table = null;
-            id = null;
-        } catch (Exception e) {
+        } catch (SQLException e) {
 
         }
     }

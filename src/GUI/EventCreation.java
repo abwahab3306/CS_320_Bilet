@@ -4,6 +4,8 @@ import Database.InsertData;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class EventCreation {
 
@@ -86,14 +88,21 @@ public class EventCreation {
         button.setBounds(x / 2, 350, 150, 30);
         panel.add(button);
 
-        int ticket = Integer.parseInt(ticket_num.getText());
-        int date = Integer.parseInt(dateText.getText());
-        int price = Integer.parseInt(priceText.getText());
-        int iban = Integer.parseInt(eventiban.getText());
 
-        InsertData.createEvent(eventName.getText(), 5, ticket, date, locationText.getText(),
-                price, iban);
+        button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
 
+
+                int ticket = Integer.parseInt(ticket_num.getText());
+                int date = Integer.parseInt(dateText.getText());
+                int price = Integer.parseInt(priceText.getText());
+                int iban = Integer.parseInt(eventiban.getText());
+
+                InsertData.createEvent(eventName.getText(), 5, ticket, date, locationText.getText(),
+                        price, iban);
+            }
+        });
         frame.setVisible(true);
     }
 }
