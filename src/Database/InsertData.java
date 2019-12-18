@@ -1,4 +1,3 @@
-
 package Database;
 
 import java.sql.SQLException;
@@ -21,7 +20,7 @@ public class InsertData {
             id = "user_id";
         }
 
-        String query = "INSERT IGNORE INTO `sql7313897`.`" + table + "` (`" + id + "`, `name`, `surname`, `email`, `password`) VALUES (NULL,'" + name + "','" +
+        String query = "INSERT IGNORE INTO `" + table + "` (`" + id + "`, `name`, `surname`, `email`, `password`) VALUES (NULL,'" + name + "','" +
                 surname + "','" + email + "','" + password + "')";
 
 
@@ -34,8 +33,8 @@ public class InsertData {
 
     public static void createEvent(String name, int organizerid, int ticketnums, int date, String location, int price, int ibanno) {
 
-        String query = "INSERT IGNORE INTO `sql7313897`.`events` (`event_id`, `name`, `organizer_id`, `number_of_tickets`, `date`, `location`, `price`, `iban_no_organizer`) VALUES (NULL,'" + name + "','" +
-                organizerid + "','" + ticketnums + "','" + date + "','" + location +  "','" + price + "','" + ibanno + "')";
+        String query = "INSERT IGNORE INTO `events` (`event_id`, `name`, `organizer_id`, `number_of_tickets`, `date`, `location`, `price`, `iban_no_organizer`) VALUES (NULL,'" + name + "','" +
+                organizerid + "','" + ticketnums + "','" + date + "','" + location + "','" + price + "','" + ibanno + "')";
 
         send(query);
 
@@ -43,7 +42,7 @@ public class InsertData {
     }
 
     public static void buyTicket(int userid, int eventid, int num_of_ticket) {
-        String query = "INSERT IGNORE INTO `sql7313897`.`reservations` (`res_id`, `user_id`, `event_id`, `number_of_tickets`) VALUES (NULL,'" + userid + "','" +
+        String query = "INSERT IGNORE INTO `reservations` (`res_id`, `user_id`, `event_id`, `number_of_tickets`) VALUES (NULL,'" + userid + "','" +
                 eventid + "','" + num_of_ticket + "')";
 
         send(query);
@@ -53,9 +52,7 @@ public class InsertData {
         try {
             DB_Connection connection = new DB_Connection();
             connection.insertData(query);
-            table = null;
-            id = null;
-        } catch (Exception e) {
+        } catch (SQLException e) {
 
         }
     }

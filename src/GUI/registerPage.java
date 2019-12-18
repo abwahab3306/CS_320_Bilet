@@ -1,6 +1,8 @@
 package GUI;
 
 import Database.InsertData;
+import Model.Organizer;
+import Model.User;
 
 import javax.swing.*;
 import java.awt.*;
@@ -91,7 +93,12 @@ public class registerPage {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                OrganizerDashboard dashboard = new OrganizerDashboard();
+
+                if (usertype.equals("Organizer")) {
+                    User user = new User(name.getText(), surname.getText(), email.getText(), password.getText());
+                } else {
+                    Organizer organizer = new Organizer(name.getText(), surname.getText(), email.getText(), password.getText());
+                }
                 sendData(usertype);
             }
         });
@@ -104,7 +111,7 @@ public class registerPage {
             System.out.println("name: " + nameEntry.getText() + "surname: " + surnameEntry.getText() + "email: " + emailEntry.getText() + "pass " + passwordEntry.getText());
         } else {
             InsertData.insertAccount(false, nameEntry.getText(), surnameEntry.getText(), emailEntry.getText(), passwordEntry.getText());
-            System.out.println("name: " + nameEntry.getText() + "surname: " + surnameEntry.getText() + "email: " + emailEntry.getText() + "pass " + passwordEntry.getText());
+            System.out.println("name: " + nameEntry.getText() + " - surname: " + surnameEntry.getText() + " - email: " + emailEntry.getText() + " - pass " + passwordEntry.getText());
         }
 
     }

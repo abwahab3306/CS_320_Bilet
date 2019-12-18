@@ -2,30 +2,41 @@ package Database;
 
 import java.sql.*;
 
+
 public class DB_Connection {
+
+// remotemysql.com username: Sitch1982@cuvox.de password: bilet
 
     private static Connection conn;
     private static Statement stmt;
-    static final String USER = "cs320";
-    static final String PASS = "Yrj$bT}82^d)S2r";
+//    private static final String USER = "sql7313897";
+//    private static final String PASS = "vAC2v1qeAK";
+
+//    private static final String USER = "mohaabdev_ozan";
+//    private static final String PASS = "sifrebilet44bilet";
+
+    private static final String USER = "KFR83Bm523";
+    private static final String PASS = "UL8NtSIG4M";
 
 
-    public DB_Connection() {
+*/
+    private static final String USER ="root";
+    private static final String PASS ="CTC@10cri";
+    public DB_Connection() throws SQLException {
 
-        String url = "jdbc:mysql://mohaabdev.com:3306/mohaabdev_cs320";
+//        String url = "jdbc:mysql://sql7.freesqldatabase.com:3306/sql7315453";
+//        String url = "jdbc:mysql://107.161.181.220:3306/mohaabdev_bilet";
+
+        String url = "jdbc:mysql://remotemysql.com:3306/KFR83Bm523";
+
+*/
+        String url ="jdbc:mysql://localhost.com:3306";
+        conn = DriverManager.getConnection(url, USER, PASS);
+        System.out.println("Database connection established");
 
 
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection(url, USER, PASS);
-            System.out.println("Connection Successful");
-            conn.close();
-        } catch (Exception ex) {
-            System.out.println("Error" + ex);
-
-
-        }
     }
+
     public ResultSet send_query(String a, String... s) {
 
         ResultSet rs = null;
@@ -105,5 +116,7 @@ public class DB_Connection {
             }
         }
     }
+
+
 
 }
