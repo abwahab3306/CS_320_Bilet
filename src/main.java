@@ -55,7 +55,7 @@ public class main {
         int y = (int) ((dimension.getHeight() - frame.getHeight()) / 2);
         frame.setLocation(x, y);
 
-        JPanel panel = new JPanel();
+        JPanel panel = new JPanel();6
         frame.add(panel);
 
         JRadioButton radioUser = new JRadioButton("User");
