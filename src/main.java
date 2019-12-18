@@ -35,7 +35,6 @@ public class main {
 
     }
 
-
     private static void instantiateJDBC() {
 
         try {
@@ -93,9 +92,5 @@ public class main {
                 registerPage reg = new registerPage(se);
             }
         });
-
-
     }
-
-
 }

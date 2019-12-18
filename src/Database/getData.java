@@ -24,9 +24,5 @@ public class getData {
         }else
             return false;
     }
-
-    public static void getAllEvents() {
-        String Stat = 
-    }
 }
 

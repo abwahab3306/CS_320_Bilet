@@ -91,7 +91,7 @@ public class registerPage {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-
+                OrganizerDashboard dashboard = new OrganizerDashboard();
                 sendData(usertype);
             }
         });
