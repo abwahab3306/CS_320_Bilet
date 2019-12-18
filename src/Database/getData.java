@@ -10,6 +10,7 @@ public class getData {
     private static Statement stmt;
     private static String table;
     private static String id;
+    private static String qurey;
     public static boolean authenticator(String id, String Password, Boolean isOrganizer)  {
         if (isOrganizer) {
             table = "organizers";
@@ -22,12 +23,13 @@ public class getData {
        try {
            ResultSet rs = stmt.executeQuery(stat);
            return true;
-       } catch (Exception e){
+       } catch (SQLException e){
            return false;
        }
+
     }
 
-    public static ResultSet get(String qurey){
+    private static ResultSet get(String qurey){
         ResultSet rs=null;
         try{
             rs = stmt.executeQuery(qurey);
@@ -51,13 +53,14 @@ public class getData {
         return Iban;
     }
 
-    public static ResultSet etMyEvents(){
+    public static ResultSet getMyEvents(){
         String qurey ="";
       return get(qurey);
     }
 
-    public static ArrayList<String> getMytickets(String qurey) throws SQLException {
+    public static ArrayList<String> getMytickets(String Email) throws SQLException {
         ArrayList<String> mytickets = new ArrayList<String>();
+        qurey = "Select ";
         ResultSet rs = get(qurey);
         try {
             while (rs.next()){
@@ -70,7 +73,7 @@ public class getData {
         return mytickets;
     }
 
-    public static ArrayList<String> getMyEvents(String qurey) throws SQLException {
+    public static ArrayList<String> getMyEvents(String Email) throws SQLException {
         ArrayList<String> myEvents = new ArrayList<String>();
         ResultSet rs = get(qurey);
         try {
@@ -83,7 +86,7 @@ public class getData {
         }
         return myEvents;
     }
-    public static ArrayList<String> getAllEvents(String qurey) throws SQLException {
+    public static ArrayList<String> getAllEvents() throws SQLException {
         ArrayList<String> myEvents = new ArrayList<String>();
         ResultSet rs = get(qurey);
         try {

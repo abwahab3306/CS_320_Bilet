@@ -19,9 +19,7 @@ public class DB_Connection {
     private static final String PASS = "UL8NtSIG4M";
 
 
-*/
-    private static final String USER ="root";
-    private static final String PASS ="CTC@10cri";
+
     public DB_Connection() throws SQLException {
 
 //        String url = "jdbc:mysql://sql7.freesqldatabase.com:3306/sql7315453";
@@ -29,8 +27,8 @@ public class DB_Connection {
 
         String url = "jdbc:mysql://remotemysql.com:3306/KFR83Bm523";
 
-*/
-        String url ="jdbc:mysql://localhost.com:3306";
+
+
         conn = DriverManager.getConnection(url, USER, PASS);
         System.out.println("Database connection established");
 
