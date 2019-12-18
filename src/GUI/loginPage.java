@@ -1,12 +1,14 @@
 package GUI;
 
-import Model.Organizer;
-import Model.User;
-
 import javax.swing.*;
 import java.awt.*;
+<<<<<<< HEAD
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+=======
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+>>>>>>> aef329a18059a06d6287fbd133b3173f55f45e95
 
 public class loginPage {
 
@@ -57,16 +59,18 @@ public class loginPage {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (type.equals("Organizer")) {
-
-//                    Organizer currentOrganizer = new Organizer(); authenticated user
                     OrganizerDashboard organizer = new OrganizerDashboard();
-                } else {
-//                    User currentUser = new User(); authenticated user
-//                    UserDashboard user = new UserDashboard();
-                    DetailedEvent event = new DetailedEvent();
                 }
             }
         });
         frame.setVisible(true);
+
+        loginButton.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                UserDashboard dashboard = new UserDashboard();
+            }
+        });
     }
 }
