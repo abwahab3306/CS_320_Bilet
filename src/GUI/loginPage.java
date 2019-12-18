@@ -2,13 +2,10 @@ package GUI;
 
 import javax.swing.*;
 import java.awt.*;
-<<<<<<< HEAD
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-=======
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
->>>>>>> aef329a18059a06d6287fbd133b3173f55f45e95
 
 public class loginPage {
 
@@ -23,7 +20,6 @@ public class loginPage {
         usertype = type;
 
         JFrame frame = new JFrame("LOGIN PAGE");
-        //frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(1920, 1080);
 
         ImagePanel panel = new ImagePanel(new ImageIcon("Background.jpg").getImage());
@@ -59,18 +55,25 @@ public class loginPage {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (type.equals("Organizer")) {
+                    message();
                     OrganizerDashboard organizer = new OrganizerDashboard();
+                    frame.dispose();
+                } else {
+                    message();
+                    UserDashboard dashboard = new UserDashboard();
+                    frame.dispose();
                 }
             }
         });
+
+
         frame.setVisible(true);
 
-        loginButton.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                super.mouseClicked(e);
-                UserDashboard dashboard = new UserDashboard();
-            }
-        });
+
+    }
+
+    public void message() {
+        JOptionPane.showMessageDialog(null, "Logged in succesfully!");
+
     }
 }

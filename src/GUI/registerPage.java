@@ -3,6 +3,7 @@ package GUI;
 import Database.InsertData;
 import Model.Organizer;
 import Model.User;
+import javafx.scene.control.DialogPane;
 
 import javax.swing.*;
 import java.awt.*;
@@ -96,12 +97,21 @@ public class registerPage {
 
                 if (usertype.equals("Organizer")) {
                     User user = new User(name.getText(), surname.getText(), email.getText(), password.getText());
+                    message(usertype);
+                    frame.dispose();
                 } else {
                     Organizer organizer = new Organizer(name.getText(), surname.getText(), email.getText(), password.getText());
+                    message(usertype);
+                    frame.dispose();
                 }
                 sendData(usertype);
             }
         });
+    }
+
+    public void message(String usertype) {
+        JOptionPane.showMessageDialog(null, "Succesfully registered as " + usertype + " !");
+
     }
 
     public void sendData(String usertype) {

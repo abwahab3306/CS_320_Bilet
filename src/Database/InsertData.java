@@ -31,7 +31,7 @@ public class InsertData {
 
     }
 
-    public static void createEvent(String name, int organizerid, int ticketnums, int date, String location, int price, int ibanno) {
+    public static void createEvent(String name, int organizerid, int ticketnums, String date, String location, int price, String ibanno) {
 
         String query = "INSERT IGNORE INTO `events` (`event_id`, `name`, `organizer_id`, `number_of_tickets`, `date`, `location`, `price`, `iban_no_organizer`) VALUES (NULL,'" + name + "','" +
                 organizerid + "','" + ticketnums + "','" + date + "','" + location + "','" + price + "','" + ibanno + "')";

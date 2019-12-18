@@ -35,6 +35,7 @@ public class main {
 
     }
 
+
     private static void instantiateJDBC() {
 
         try {
@@ -55,7 +56,7 @@ public class main {
         int y = (int) ((dimension.getHeight() - frame.getHeight()) / 2);
         frame.setLocation(x, y);
 
-        JPanel panel = new JPanel();6
+        JPanel panel = new JPanel();
         frame.add(panel);
 
         JRadioButton radioUser = new JRadioButton("User");
@@ -63,6 +64,7 @@ public class main {
         JRadioButton radioOrganizer = new JRadioButton("Organizer");
         radioOrganizer.setActionCommand("Organizer");
         ButtonGroup bg = new ButtonGroup();
+        radioUser.setSelected(true);
         bg.add(radioOrganizer);
         bg.add(radioUser);
 
@@ -70,6 +72,8 @@ public class main {
         panel.add(radioUser);
         JButton but_login = new JButton("Login");
         JButton but_reg = new JButton("Register");
+        but_login.setLocation(150, 100);
+        but_reg.setLocation(50, 100);
         panel.add(but_login);
         panel.add(but_reg);
 
@@ -78,7 +82,6 @@ public class main {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String sl = bg.getSelection().getActionCommand();
-//                System.out.println(sl);
                 loginPage login = new loginPage(sl);
             }
         });
@@ -88,9 +91,12 @@ public class main {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String se = bg.getSelection().getActionCommand();
-//                System.out.println(se);
                 registerPage reg = new registerPage(se);
             }
         });
+
+
     }
+
+
 }
