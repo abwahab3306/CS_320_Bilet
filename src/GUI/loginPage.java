@@ -1,11 +1,17 @@
 package GUI;
 
+import Database.getData;
+import Model.Event;
+import Model.User;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.Authenticator;
+import java.util.ArrayList;
 
 public class loginPage {
 
@@ -18,6 +24,8 @@ public class loginPage {
     public loginPage(String type) {
 
         usertype = type;
+
+
 
         JFrame frame = new JFrame("LOGIN PAGE");
         frame.setSize(1920, 1080);
@@ -54,13 +62,27 @@ public class loginPage {
         loginButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
                 if (type.equals("Organizer")) {
+                    getData.authenticator(mailEntry.getText(),passwordEntry.getText(),true);
                     message();
                     OrganizerDashboard organizer = new OrganizerDashboard();
                     frame.dispose();
                 } else {
-                    message();
-                    UserDashboard dashboard = new UserDashboard();
+                    String emailEntered= mailEntry.getText();
+                    String passwordEntered = passwordEntry.getText();
+                    System.out.println(emailEntered+" "+passwordEntered);
+                    boolean what = getData.authenticator(emailEntered,passwordEntered,false);
+                    System.out.println(what);
+                    if(what==true){
+                        message();
+                        User user = new User("k","k","k","k");
+                        UserDashboard dashboard = new UserDashboard(user);
+                    }else {
+                        System.out.println("not working");
+                    }
+
+
                     frame.dispose();
                 }
             }

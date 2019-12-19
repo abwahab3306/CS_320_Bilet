@@ -1,11 +1,14 @@
 package GUI;
 
 
+
+import Database.getData;
+
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -20,14 +23,14 @@ public class IbanFrame {
     private static JLabel txt, txt2, txt3;
 
 
-    public IbanFrame() {
+    public IbanFrame() throws SQLException {
 
 //        Color color = new Color(128, 0, 0);
 
         ui();
     }
 
-    public static void ui() {
+    public static void ui() throws SQLException {
         JFrame frame = new JFrame("Payment");
 
         frame.setSize(500, 200);
@@ -45,7 +48,8 @@ public class IbanFrame {
                 + " after you provide the fee.");
         txt2.setFont(new Font("Calibri", Font.ITALIC, 13));
 
-        iban = new JTextField("IBAN: "); // iban query will be provided here
+        String ibam = getData.getIBAN();
+        iban = new JTextField("IBAN: "+ibam); // iban query will be provided here
 
         button = new JButton("OK");
         button.setSize(20, 20);

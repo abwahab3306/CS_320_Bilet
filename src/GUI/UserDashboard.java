@@ -1,5 +1,7 @@
 package GUI;
 
+import Model.User;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -8,8 +10,11 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class UserDashboard {
+    private String name;
+    private String Lastname;
 
-    public UserDashboard() {
+    public UserDashboard(User user) {
+        name= user.getName();
         JFrame frame = new JFrame("USER DASHBOARD");
         frame.setLayout(null);
         Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
@@ -19,7 +24,9 @@ public class UserDashboard {
         panel.setLayout(null);
         frame.getContentPane().add(panel);
 
-        JLabel userName = new JLabel("Name: ");
+
+
+        JLabel userName = new JLabel("Name: " +name);
         userName.setFont(new Font("Calibri", Font.PLAIN, 22));
         userName.setBounds(950, 10, 100, 100);
         panel.add(userName);

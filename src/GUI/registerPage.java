@@ -3,7 +3,7 @@ package GUI;
 import Database.InsertData;
 import Model.Organizer;
 import Model.User;
-import javafx.scene.control.DialogPane;
+//import javafx.scene.control.DialogPane;
 
 import javax.swing.*;
 import java.awt.*;
@@ -106,7 +106,7 @@ public class registerPage {
                     message(usertype);
                     frame.dispose();
                 }
-//                sendData(usertype);
+               sendData(usertype);
             }
         });
     }

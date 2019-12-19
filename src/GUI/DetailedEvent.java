@@ -3,6 +3,7 @@ package GUI;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.sql.SQLException;
 
 public class DetailedEvent {
     private static String finalNumOfTickets;
@@ -98,7 +99,11 @@ public class DetailedEvent {
         pay.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                IbanFrame pay = new IbanFrame();
+                try {
+                    IbanFrame pay = new IbanFrame();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
                 //finalNumOfTickets = ticketNumChoice.getSelectedItem() ;
                 numberChosen.setText("0");
             }
