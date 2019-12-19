@@ -24,6 +24,7 @@ public class DeleteData {
         try {
             DB_Connection connection = new DB_Connection();
             connection.insertData(query);
+            connection.close();
 
         } catch (SQLException e) {
 

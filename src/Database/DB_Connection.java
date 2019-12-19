@@ -28,7 +28,7 @@ public class DB_Connection {
 
     }
 
-    public ResultSet send_query(String a) {
+    /*public ResultSet send_query(String a) {
 
         ResultSet rs = null;
         stmt = null;
@@ -47,7 +47,7 @@ public class DB_Connection {
         }
 
         return rs;
-    }
+    }*/
 
     public void insertData(String query) {
 

@@ -81,11 +81,16 @@ public class loginPage {
                         Organizer org=null;
                         try {
                            org = getData.getOrganizer(emailEntered);
+                            System.out.println(emailEntered);
                             System.out.println(org.getEmail());
                         } catch (SQLException ex) {
                             ex.printStackTrace();
                         }
-                        OrganizerDashboard organizer = new OrganizerDashboard(org);
+                        try {
+                            OrganizerDashboard organizer = new OrganizerDashboard(org);
+                        } catch (SQLException ex) {
+                            ex.printStackTrace();
+                        }
                         frame.dispose();
                     } else {
                         wronginfo();

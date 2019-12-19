@@ -12,59 +12,29 @@ import Model.User;
 
 public class getData {
 
-    public static boolean authenticator(String Email , String Password, Boolean isOrganizer)  {
-        String table;
-        if (isOrganizer) {
-            table = "organizers";
-        } else {
-            table = "users";
-        }
-       String stat = "SELECT password FROM " + table +" "+"where email="+"'"+Email+"'";
-       try {
-           DB_Connection connection = new DB_Connection();
-           ResultSet rs = connection.send_query(stat);
-           System.out.println("this step is working 1");
-           String dbpass;
-           if(rs.next()){
-               dbpass = rs.getString(1);
-               System.out.println(":: "+ dbpass + Password);
-               if (dbpass.contentEquals(Password)){
-                   return true;
-               }
-           }
 
+	public static String getOrgId(String email) throws SQLException {
+		String ID = null;
+		DB_Connection connection = new DB_Connection();
+		PreparedStatement ps = connection.conn.prepareStatement("SELECT * FROM organizers where email='"+email+"'" );
+		ResultSet rs = ps.executeQuery();
+		if (rs.next()){
+			ID = rs.getString("organizer_id");
+		}
+		connection.close();
+		return ID;
+	}
 
-
-
-       } catch (SQLException e){
-
-           return false;
-       }
-        return false;
-
-    }
-
-    private static ResultSet get(ResultSet q){
-        return q;
-    }
-
-    public static String getIBAN() {
-        String Iban;
-        /*      ResultSet rs = get(qurey);*/
-        Iban ="kdsjnds";
-        return Iban;
-    }
-
-
-
-    public static ArrayList<String> getMytickets(String Email) {
+   public static ArrayList<String> getMytickets(String Email) {
         ArrayList<String> mytickets = new ArrayList<String>();
         return mytickets;
     }
 
     public static ArrayList<Event> getMyEvents(String Email) throws SQLException {
-    	DB_Connection connection = new DB_Connection();
-    	PreparedStatement ps = connection.conn.prepareStatement("SELECT * FROM events");
+		String ID = getOrgId(Email);
+		System.out.println(ID+"sdkmkd");
+		DB_Connection connection = new DB_Connection();
+    	PreparedStatement ps = connection.conn.prepareStatement("SELECT * FROM events WHERE organizer_id= '"+ID+"'");
     	ResultSet rs = ps.executeQuery();
 		String event_id = null;
 		String name = null;
@@ -86,6 +56,7 @@ public class getData {
 			Event event = new Event(name,organizer_id,number_of_tickets,date,location,price,iban_no_organizer);
 
 		}
+    	connection.close();
         ArrayList<Event> myEvents = new ArrayList<Event>();
         return myEvents;
 
@@ -115,6 +86,7 @@ public class getData {
 			Event event = new Event(name,organizer_id,number_of_tickets,date,location,price,iban_no_organizer);
 			myEvents.add(event);
 		}
+		connection.close();
         return myEvents;
 
     }
@@ -133,6 +105,7 @@ public class getData {
 			totalDataCount += 1;
 			// do some work
 		}
+		connection.close();
 		return totalDataCount;
 	}
 
@@ -190,6 +163,7 @@ public class getData {
 			password = rs.getString("password");
 
 		}
+		connection.close();
 		return new User(name, surname, mail, password);
 
 	}
@@ -209,6 +183,7 @@ public class getData {
 			password = rs.getString("password");
 
 		}
+		connection.close();
 		return new Organizer(name, surname, mail, password);
 
 	}

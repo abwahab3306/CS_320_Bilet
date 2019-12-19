@@ -1,11 +1,14 @@
 package GUI;
 
+import Database.getData;
+import Model.Event;
 import Model.Organizer;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class OrganizerDashboard {
@@ -13,7 +16,7 @@ public class OrganizerDashboard {
     private String lastname;
     private String orgemail;
 
-    public OrganizerDashboard(Organizer organizer) {
+    public OrganizerDashboard(Organizer organizer) throws SQLException {
         name = organizer.getName();
         lastname =organizer.getLastname();
         orgemail = organizer.getEmail();
@@ -37,7 +40,7 @@ public class OrganizerDashboard {
 
         JLabel organizerSurname = new JLabel("Surname: "+ lastname);
         organizerSurname.setFont(new Font("Calibri", Font.PLAIN, 22));
-        organizerSurname.setBounds(100, 200, 100, 100);
+        organizerSurname.setBounds(100, 200, 200, 100);
         panel.add(organizerSurname);
 
         JLabel email = new JLabel("Email: " + orgemail);
@@ -65,6 +68,7 @@ public class OrganizerDashboard {
 
 
         createEvent.addActionListener(new ActionListener() {
+            ArrayList<Event> events = getData.getMyEvents(orgemail);
             @Override
             public void actionPerformed(ActionEvent e) {
                 EventCreation newEvent = new EventCreation();
