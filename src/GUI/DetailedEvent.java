@@ -1,5 +1,7 @@
 package GUI;
 
+import Model.Event;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -8,11 +10,18 @@ import java.sql.SQLException;
 public class DetailedEvent {
     private static String finalNumOfTickets;
 
-    public DetailedEvent() {
-        ui();
+    public DetailedEvent(Event event) {
+        String name = event.getName();
+        String location = event.getLocation();
+        int price = event.getPrice();
+        String date= event.getDate();
+        String Iban = event.getIBAN();
+
+
+        ui(name,location,date,Iban,price);
     }
 
-    private static void ui() {
+    private static void ui(String name, String location, String date, String Iban, int price) {
         JFrame frame = new JFrame("DETAILED EVENT");
         frame.setLayout(null);
         Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
@@ -22,7 +31,7 @@ public class DetailedEvent {
         panel.setLayout(null);
         frame.getContentPane().add(panel);
 
-        JLabel userName = new JLabel("Name: ");
+       /* JLabel userName = new JLabel("Name: ");
         userName.setFont(new Font("Calibri", Font.PLAIN, 22));
         userName.setBounds(850, 10, 100, 100);
         panel.add(userName);
@@ -34,7 +43,7 @@ public class DetailedEvent {
 
         JButton logout = new JButton("Logout");
         logout.setBounds(1300, 40, 100, 50);
-        panel.add(logout);
+        panel.add(logout);*/
 
         JLabel basket = new JLabel("Basket");
         basket.setBounds(300, 40, 100, 50);
@@ -53,7 +62,10 @@ public class DetailedEvent {
         reduceTicket.setBounds(1050, 500, 100, 50);
         panel.add(reduceTicket);
 
-        JTextArea eventDetails = new JTextArea("Event details", 50, 50);
+        String Details="Name: "+name+" \n" + "Location: "+location +"\n"+"Ticket Price: "+price +"\n"+"Date: "+date;
+
+        JTextArea eventDetails = new JTextArea(Details , 50, 50);
+
         eventDetails.setBounds(300, 100, 900, 375);
         eventDetails.setVisible(true);
         eventDetails.setLineWrap(true);
@@ -99,11 +111,9 @@ public class DetailedEvent {
         pay.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                try {
-                    IbanFrame pay = new IbanFrame();
-                } catch (SQLException ex) {
-                    ex.printStackTrace();
-                }
+
+                    IbanFrame pay = new IbanFrame(Iban);
+
                 //finalNumOfTickets = ticketNumChoice.getSelectedItem() ;
                 numberChosen.setText("0");
             }

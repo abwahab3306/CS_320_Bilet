@@ -1,10 +1,11 @@
 
 package Database;
-
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import Model.Event;
 import Model.Organizer;
 import Model.User;
 
@@ -61,13 +62,59 @@ public class getData {
         return mytickets;
     }
 
-    public static ArrayList<String> getMyEvents(String Email) throws SQLException {
-        ArrayList<String> myEvents = new ArrayList<String>();
+    public static ArrayList<Event> getMyEvents(String Email) throws SQLException {
+    	DB_Connection connection = new DB_Connection();
+    	PreparedStatement ps = connection.conn.prepareStatement("SELECT * FROM events");
+    	ResultSet rs = ps.executeQuery();
+		String event_id = null;
+		String name = null;
+		int organizer_id = 0;
+		int number_of_tickets = 0;
+		String date =null;
+		String location =null;
+		int price = 0;
+		String iban_no_organizer = null;
+    	while (rs.next()){
+			event_id =rs.getString("event_id");
+			name= rs.getString("name");
+			organizer_id= Integer.parseInt(rs.getString("organizer_id"));
+			number_of_tickets=Integer.parseInt(rs.getString("number_of_tickets"));
+			date=rs.getString("date");
+			location=rs.getString("location");
+			price=Integer.parseInt(rs.getString("price"));
+			iban_no_organizer=rs.getString("iban_no_organizer");
+			Event event = new Event(name,organizer_id,number_of_tickets,date,location,price,iban_no_organizer);
+
+		}
+        ArrayList<Event> myEvents = new ArrayList<Event>();
         return myEvents;
 
     }
-    public static ArrayList<String> getAllEvents() throws SQLException {
-        ArrayList<String> myEvents = new ArrayList<String>();
+    public static ArrayList<Event> getAllEvents() throws SQLException {
+        ArrayList<Event> myEvents = new ArrayList<Event>();
+		DB_Connection connection = new DB_Connection();
+		PreparedStatement ps = connection.conn.prepareStatement("SELECT * FROM events");
+		ResultSet rs = ps.executeQuery();
+		String event_id = null;
+		String name = null;
+		int organizer_id = 0;
+		int number_of_tickets = 0;
+		String date =null;
+		String location =null;
+		int price = 0;
+		String iban_no_organizer = null;
+		while (rs.next()){
+			event_id =rs.getString("event_id");
+			name= rs.getString("name");
+			organizer_id= Integer.parseInt(rs.getString("organizer_id"));
+			number_of_tickets=Integer.parseInt(rs.getString("number_of_tickets"));
+			date=rs.getString("date");
+			location=rs.getString("location");
+			price=Integer.parseInt(rs.getString("price"));
+			iban_no_organizer=rs.getString("iban_no_organizer");
+			Event event = new Event(name,organizer_id,number_of_tickets,date,location,price,iban_no_organizer);
+			myEvents.add(event);
+		}
         return myEvents;
 
     }
@@ -126,6 +173,48 @@ public class getData {
 		}
 		return new User(name, surname, mail, password);
 	}
+
+	public static User getUser(String email) throws SQLException{
+		DB_Connection connection = new DB_Connection();
+		PreparedStatement ps = connection.conn.prepareStatement("SELECT * FROM users where email='"+email+"'" );
+		ResultSet rs = ps.executeQuery();
+
+		String name = null;
+		String surname = null;
+		String mail = null;
+		String password = null;
+		while (rs.next()) {
+			name = rs.getString("name");
+			surname = rs.getString("surname");
+			mail = rs.getString("email");
+			password = rs.getString("password");
+
+		}
+		return new User(name, surname, mail, password);
+
+	}
+
+	public static Organizer getOrganizer(String email) throws SQLException{
+		DB_Connection connection = new DB_Connection();
+		PreparedStatement ps = connection.conn.prepareStatement("SELECT * FROM organizers where email='"+email+"'" );
+		ResultSet rs = ps.executeQuery();
+		String name = null;
+		String surname = null;
+		String mail = null;
+		String password = null;
+		while (rs.next()) {
+			name = rs.getString("name");
+			surname = rs.getString("surname");
+			mail = rs.getString("email");
+			password = rs.getString("password");
+
+		}
+		return new Organizer(name, surname, mail, password);
+
+	}
+
+
+
 
 	public static boolean loginUser(String name, String password) throws SQLException {
 		DB_Connection connection = new DB_Connection();

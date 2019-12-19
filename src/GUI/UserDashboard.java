@@ -1,5 +1,7 @@
 package GUI;
 
+import Database.getData;
+import Model.Event;
 import Model.User;
 
 import javax.swing.*;
@@ -8,13 +10,16 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class UserDashboard {
     private String name;
     private String Lastname;
 
-    public UserDashboard(User user) {
+    public UserDashboard(User user) throws SQLException {
         name= user.getName();
+        Lastname = user.getLastname();
         JFrame frame = new JFrame("USER DASHBOARD");
         frame.setLayout(null);
         Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
@@ -31,7 +36,7 @@ public class UserDashboard {
         userName.setBounds(950, 10, 100, 100);
         panel.add(userName);
 
-        JLabel userSurname = new JLabel("Surname: ");
+        JLabel userSurname = new JLabel("Surname: " + Lastname);
         userSurname.setFont(new Font("Calibri", Font.PLAIN, 22));
         userSurname.setBounds(1150, 10, 200, 100);
         panel.add(userSurname);
@@ -59,9 +64,11 @@ public class UserDashboard {
 
         int y = 150;
         JButton event = null;
+        ArrayList<Event> Allevents = getData.getAllEvents();
 
-        for (int eventNumber = 0; eventNumber < 5; eventNumber++) {
-            event = new JButton("E" + eventNumber);
+        for (int eventNumber = 0; eventNumber < Allevents.size(); eventNumber++) {
+            Event SelectedEvent = Allevents.get(eventNumber);
+            event = new JButton(SelectedEvent.getName());
             event.setFont(new Font("Calibri", Font.PLAIN, 22));
             event.setBounds(500, y + 10, 500, 100);
             panel.add(event);
@@ -71,7 +78,7 @@ public class UserDashboard {
                 @Override
                 public void mouseClicked(MouseEvent e) {
                     super.mouseClicked(e);
-                    DetailedEvent detailedEvent = new DetailedEvent();
+                    DetailedEvent detailedEvent = new DetailedEvent(SelectedEvent);
                 }
             });
 /*

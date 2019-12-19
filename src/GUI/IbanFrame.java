@@ -23,14 +23,14 @@ public class IbanFrame {
     private static JLabel txt, txt2, txt3;
 
 
-    public IbanFrame() throws SQLException {
+    public IbanFrame(String Iban)  {
 
 //        Color color = new Color(128, 0, 0);
 
-        ui();
+        ui(Iban);
     }
 
-    public static void ui() throws SQLException {
+    public static void ui(String iban)  {
         JFrame frame = new JFrame("Payment");
 
         frame.setSize(500, 200);
@@ -48,8 +48,8 @@ public class IbanFrame {
                 + " after you provide the fee.");
         txt2.setFont(new Font("Calibri", Font.ITALIC, 13));
 
-        String ibam = getData.getIBAN();
-        iban = new JTextField("IBAN: "+ibam); // iban query will be provided here
+
+        IbanFrame.iban = new JTextField("IBAN: "+iban); // iban query will be provided here
 
         button = new JButton("OK");
         button.setSize(20, 20);
@@ -64,7 +64,7 @@ public class IbanFrame {
 
 
         panel.add(txt);
-        panel.add(iban);
+        panel.add(IbanFrame.iban);
         panel.add(txt2);
         panel.add(txt3);
         panel.add(button);

@@ -2,6 +2,7 @@ package GUI;
 
 import Database.getData;
 import Model.Event;
+import Model.Organizer;
 import Model.User;
 
 import javax.swing.*;
@@ -11,6 +12,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.net.Authenticator;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class loginPage {
@@ -62,28 +64,65 @@ public class loginPage {
         loginButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                String emailEntered= mailEntry.getText();
+                String passwordEntered = passwordEntry.getText();
+                boolean what = false;
                 if (type.equals("Organizer")) {
-                    getData.authenticator(mailEntry.getText(),passwordEntry.getText(),true);
-                    message();
-                    OrganizerDashboard organizer = new OrganizerDashboard();
-                    frame.dispose();
+                try {
+                            what=getData.loginOrganizer(emailEntered,passwordEntered);
+
+
+
+                        } catch (SQLException ex) {
+                            ex.printStackTrace();
+                        }
+                    if (what==true){
+                        message();
+                        Organizer org=null;
+                        try {
+                           org = getData.getOrganizer(emailEntered);
+                            System.out.println(org.getEmail());
+                        } catch (SQLException ex) {
+                            ex.printStackTrace();
+                        }
+                        OrganizerDashboard organizer = new OrganizerDashboard(org);
+                        frame.dispose();
+                    } else {
+                        wronginfo();
+                    }
+
                 } else {
-                    String emailEntered= mailEntry.getText();
-                    String passwordEntered = passwordEntry.getText();
-                    System.out.println(emailEntered+" "+passwordEntered);
-                    boolean what = getData.authenticator(emailEntered,passwordEntered,false);
-                    System.out.println(what);
+
+
+
+                    try {
+                        what = getData.loginUser(emailEntered,passwordEntered);
+                    } catch (SQLException ex) {
+                        ex.printStackTrace();
+                    }
+
                     if(what==true){
                         message();
-                        User user = new User("k","k","k","k");
-                        UserDashboard dashboard = new UserDashboard(user);
+                        User user = null;
+                        try {
+                            user = getData.getUser(emailEntered);
+                        } catch (SQLException ex) {
+                            ex.printStackTrace();
+                        }
+                        try {
+                            UserDashboard dashboard = new UserDashboard(user);
+                        } catch (SQLException ex) {
+                            ex.printStackTrace();
+                        }
+                        frame.dispose();
                     }else {
-                        System.out.println("not working");
+
+                        wronginfo();
+
                     }
 
 
-                    frame.dispose();
+
                 }
             }
         });
@@ -96,6 +135,11 @@ public class loginPage {
 
     public void message() {
         JOptionPane.showMessageDialog(null, "Logged in succesfully!");
+
+    }
+
+    public void wronginfo() {
+        JOptionPane.showMessageDialog(null, "wrong info entered");
 
     }
 }

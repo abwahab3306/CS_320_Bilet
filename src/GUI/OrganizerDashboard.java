@@ -1,5 +1,7 @@
 package GUI;
 
+import Model.Organizer;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -7,8 +9,14 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class OrganizerDashboard {
+    private String name;
+    private String lastname;
+    private String orgemail;
 
-    public OrganizerDashboard() {
+    public OrganizerDashboard(Organizer organizer) {
+        name = organizer.getName();
+        lastname =organizer.getLastname();
+        orgemail = organizer.getEmail();
 
 
         JFrame frame = new JFrame("ORGANIZER DASHBOARD");
@@ -22,17 +30,17 @@ public class OrganizerDashboard {
         panel.setLayout(null);
         frame.getContentPane().add(panel);
 
-        JLabel organizerName = new JLabel("Name: ");
+        JLabel organizerName = new JLabel("Name: " + name);
         organizerName.setFont(new Font("Calibri", Font.PLAIN, 22));
         organizerName.setBounds(100, 100, 100, 100);
         panel.add(organizerName);
 
-        JLabel organizerSurname = new JLabel("Surname: ");
+        JLabel organizerSurname = new JLabel("Surname: "+ lastname);
         organizerSurname.setFont(new Font("Calibri", Font.PLAIN, 22));
         organizerSurname.setBounds(100, 200, 100, 100);
         panel.add(organizerSurname);
 
-        JLabel email = new JLabel("Email: ");
+        JLabel email = new JLabel("Email: " + orgemail);
         email.setFont(new Font("Calibri", Font.PLAIN, 22));
         email.setBounds(100, 300, 100, 100);
         panel.add(email);
