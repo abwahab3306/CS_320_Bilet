@@ -19,7 +19,7 @@ public class getData {
             table = "users";
             id = "user_id";
         }
-       String stat = "SELECT PASSWORD FROM `sql7313897`.`" + table +" WHERE ID = " + id;
+       String stat = "SELECT PASSWORD FROM" + table +" WHERE ID = " + id +"AND PASSWORD ="+Password;
        try {
            ResultSet rs = stmt.executeQuery(stat);
            return true;
@@ -39,24 +39,15 @@ public class getData {
         return rs;
     }
 
-    public static String getIBAN(String ID){
+    public static String getIBAN(String ID) throws SQLException {
         String Iban = null;
-        String qurey = "Select";
-        try{
-            ResultSet rs = stmt.executeQuery(qurey);
-            Iban = rs.toString();
-        }catch (Exception e){
-            System.out.println(e);
-        }
-
-
+        String qurey = "SELECT IBAN FROM ORGANIZER WHERE EMAIL="+ID;
+        ResultSet rs = get(qurey);
+        Iban = rs.getString("IBAN");
         return Iban;
     }
 
-    public static ResultSet getMyEvents(){
-        String qurey ="";
-      return get(qurey);
-    }
+
 
     public static ArrayList<String> getMytickets(String Email) throws SQLException {
         ArrayList<String> mytickets = new ArrayList<String>();
@@ -74,10 +65,12 @@ public class getData {
     }
 
     public static ArrayList<String> getMyEvents(String Email) throws SQLException {
+        qurey =  "SELECT * FROM EVENTS WHERE EMAIL="+ Email;
         ArrayList<String> myEvents = new ArrayList<String>();
         ResultSet rs = get(qurey);
         try {
             while (rs.next()){
+                String name = rs.getString("Email");
 
             }
         }
