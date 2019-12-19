@@ -35,6 +35,7 @@ public class main {
 
     }
 
+
     private static void instantiateJDBC() {
 
         try {
@@ -48,6 +49,7 @@ public class main {
 
         JFrame frame = new JFrame();
         frame.setVisible(true);
+        frame.setLayout(new BorderLayout());
         Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
         frame.setSize(500, 300);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -56,29 +58,36 @@ public class main {
         frame.setLocation(x, y);
 
         JPanel panel = new JPanel();
-        frame.add(panel);
+        frame.add(panel, BorderLayout.NORTH);
+
 
         JRadioButton radioUser = new JRadioButton("User");
         radioUser.setActionCommand("User");
         JRadioButton radioOrganizer = new JRadioButton("Organizer");
         radioOrganizer.setActionCommand("Organizer");
         ButtonGroup bg = new ButtonGroup();
+        radioUser.setSelected(true);
         bg.add(radioOrganizer);
         bg.add(radioUser);
 
         panel.add(radioOrganizer);
         panel.add(radioUser);
+
+        JPanel panel2 = new JPanel();
+        frame.add(panel2, BorderLayout.CENTER);
+
         JButton but_login = new JButton("Login");
         JButton but_reg = new JButton("Register");
-        panel.add(but_login);
-        panel.add(but_reg);
+//        but_login.setLocation(150, 150);
+//        but_reg.setLocation(50, 200);
+        panel2.add(but_login);
+        panel2.add(but_reg);
 
 
         but_login.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String sl = bg.getSelection().getActionCommand();
-//                System.out.println(sl);
                 loginPage login = new loginPage(sl);
             }
         });
@@ -88,9 +97,12 @@ public class main {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String se = bg.getSelection().getActionCommand();
-//                System.out.println(se);
                 registerPage reg = new registerPage(se);
             }
         });
+
+
     }
+
+
 }

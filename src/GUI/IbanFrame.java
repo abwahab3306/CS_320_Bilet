@@ -15,18 +15,22 @@ import javax.swing.JTextField;
 
 public class IbanFrame {
 
-    private JTextField iban;
-    private JButton button;
-    private JLabel txt,txt2,txt3;
+    private static JTextField iban;
+    private static JButton button;
+    private static JLabel txt, txt2, txt3;
 
 
     public IbanFrame() {
 
-        Color color = new Color(128,0,0);
+//        Color color = new Color(128, 0, 0);
 
+        ui();
+    }
+
+    public static void ui() {
         JFrame frame = new JFrame("Payment");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(500,200);
+
+        frame.setSize(500, 200);
 
 
         JPanel panel = new JPanel();
@@ -36,23 +40,23 @@ public class IbanFrame {
 
         txt = new JLabel("To complete purchase, send the "
                 + "ticket fee to organizer's IBAN provided below.");
-        txt.setFont(new Font("Calibri",Font.ITALIC, 13));
+        txt.setFont(new Font("Calibri", Font.ITALIC, 13));
         txt2 = new JLabel("Your ticket will be sent to your email address"
                 + " after you provide the fee.");
-        txt2.setFont(new Font("Calibri",Font.ITALIC, 13));
+        txt2.setFont(new Font("Calibri", Font.ITALIC, 13));
 
         iban = new JTextField("IBAN: "); // iban query will be provided here
 
         button = new JButton("OK");
         button.setSize(20, 20);
-        button.addActionListener(new Action0() {
+        button.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 frame.dispose();
             }
         });
 
         txt3 = new JLabel("Thank you for using Bilet APP. Enjoy your time!");
-        txt3.setFont(new Font("Calibri",Font.BOLD + Font.ITALIC, 17));
+        txt3.setFont(new Font("Calibri", Font.BOLD + Font.ITALIC, 17));
 
 
         panel.add(txt);
@@ -63,13 +67,6 @@ public class IbanFrame {
 
         frame.setVisible(true);
 
-
-    }
-}
-
-class Action0 implements ActionListener{
-
-    public void actionPerformed(ActionEvent e) {
 
     }
 }

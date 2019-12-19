@@ -67,13 +67,13 @@ public class UserDashboard {
                     DetailedEvent detailedEvent = new DetailedEvent();
                 }
             });
-
+/*
             event.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     DetailedEvent detailedEvent = new DetailedEvent();
                 }
-            });
+            });*/
         }
 
         search.addMouseListener(new MouseAdapter() {
@@ -83,14 +83,14 @@ public class UserDashboard {
                 //?
             }
         });
-
+/*
         search.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                //?
             }
         });
-
+*/
 
 
         frame.setVisible(true);
