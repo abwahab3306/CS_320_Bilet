@@ -5,6 +5,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import Model.Organizer;
+import Model.User;
+
 
 public class getData {
 
@@ -73,5 +76,84 @@ public class getData {
     return myEvents;
     }
 
-}
 
+	public static int getNumberOfDataInATable(String tableName) throws SQLException {
+		DB_Connection connection = new DB_Connection();
+		int totalDataCount = 0;
+		PreparedStatement ps = connection.conn.prepareStatement("SELECT * FROM " + tableName);
+		ResultSet rs = ps.executeQuery();
+		while (rs.next()) {
+			totalDataCount += 1;
+			// do some work
+		}
+		return totalDataCount;
+	}
+
+	public static Organizer getLastInsertedOrganizerInATable() throws SQLException {
+		DB_Connection connection = new DB_Connection();
+		PreparedStatement ps = connection.conn.prepareStatement("SELECT * FROM organizers");
+		ResultSet rs = ps.executeQuery();
+
+		String name = null;
+		String surname = null;
+		String mail = null;
+		String password = null;
+		while (rs.next()) {
+			name = rs.getString("name");
+			surname = rs.getString("surname");
+			mail = rs.getString("email");
+			password = rs.getString("password");
+
+		}
+		return new Organizer(name, surname, mail, password);
+	}
+
+	public static User getLastInsertedUserInATable() throws SQLException {
+		DB_Connection connection = new DB_Connection();
+		PreparedStatement ps = connection.conn.prepareStatement("SELECT * FROM users");
+		ResultSet rs = ps.executeQuery();
+
+		String name = null;
+		String surname = null;
+		String mail = null;
+		String password = null;
+		while (rs.next()) {
+			name = rs.getString("name");
+			surname = rs.getString("surname");
+			mail = rs.getString("email");
+			password = rs.getString("password");
+
+		}
+		return new User(name, surname, mail, password);
+	}
+
+	public static boolean loginUser(String name, String password) throws SQLException {
+		DB_Connection connection = new DB_Connection();
+        String sql = "SELECT * from users WHERE name=? and  password=?";
+		PreparedStatement ps = connection.conn.prepareStatement(sql);
+		ps.setString(1, name);
+		ps.setString(2, password);
+		ResultSet rs = ps.executeQuery();
+		boolean isUserExist = false;
+		while (rs.next()) {
+			isUserExist = true;
+		}
+		return isUserExist;
+	}
+
+	public static boolean loginOrganizer(String name, String password) throws SQLException {
+		DB_Connection connection = new DB_Connection();
+        String sql = "SELECT * from organizers WHERE name=? and  password=?";
+		PreparedStatement ps = connection.conn.prepareStatement(sql);
+		ps.setString(1, name);
+		ps.setString(2, password);
+		ResultSet rs = ps.executeQuery();
+		boolean isUserExist = false;
+		while (rs.next()) {
+			isUserExist = true;
+		}
+		return isUserExist;
+	}
+
+
+}
