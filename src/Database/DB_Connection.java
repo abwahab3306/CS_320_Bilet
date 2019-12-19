@@ -7,7 +7,7 @@ public class DB_Connection {
 
 // remotemysql.com username: Sitch1982@cuvox.de password: bilet
 
-    private static Connection conn;
+    public static Connection conn;
     private static Statement stmt;
 //    private static final String USER = "sql7313897";
 //    private static final String PASS = "vAC2v1qeAK";

@@ -2,13 +2,10 @@ package GUI;
 
 import javax.swing.*;
 import java.awt.*;
-<<<<<<< HEAD
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-=======
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
->>>>>>> aef329a18059a06d6287fbd133b3173f55f45e95
 
 public class loginPage {
 
