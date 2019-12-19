@@ -2,15 +2,12 @@ package Database;
 
 import java.sql.*;
 
-
 public class DB_Connection {
 
 // remotemysql.com username: Sitch1982@cuvox.de password: bilet
 
     public static Connection conn;
     private static Statement stmt;
-//    private static final String USER = "sql7313897";
-//    private static final String PASS = "vAC2v1qeAK";
 
 //    private static final String USER = "mohaabdev_ozan";
 //    private static final String PASS = "sifrebilet44bilet";
@@ -19,15 +16,11 @@ public class DB_Connection {
     private static final String PASS = "UL8NtSIG4M";
 
 
-
     public DB_Connection() throws SQLException {
 
-//        String url = "jdbc:mysql://sql7.freesqldatabase.com:3306/sql7315453";
 //        String url = "jdbc:mysql://107.161.181.220:3306/mohaabdev_bilet";
 
         String url = "jdbc:mysql://remotemysql.com:3306/KFR83Bm523";
-
-
 
         conn = DriverManager.getConnection(url, USER, PASS);
         System.out.println("Database connection established");
@@ -114,7 +107,5 @@ public class DB_Connection {
             }
         }
     }
-
-
 
 }

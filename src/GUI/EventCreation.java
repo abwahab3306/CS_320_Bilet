@@ -1,11 +1,14 @@
 package GUI;
 
-import Database.InsertData;
-
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import javax.swing.*;
+
+import Database.InsertData;
 
 public class EventCreation {
 
@@ -18,7 +21,6 @@ public class EventCreation {
         int x = (int) ((dimension.getWidth() - frame.getWidth()) / 2);
         int y = (int) ((dimension.getHeight() - frame.getHeight()) / 2);
         frame.setLocation(x, y);
-
 
         JPanel panel = new JPanel();
         panel.setLayout(null);
@@ -88,19 +90,30 @@ public class EventCreation {
         button.setBounds(x / 2, 350, 150, 30);
         panel.add(button);
 
-
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-
                 int ticket = Integer.parseInt(ticket_num.getText());
-                int date = Integer.parseInt(dateText.getText());
+                String date = dateText.getText();
                 int price = Integer.parseInt(priceText.getText());
-                int iban = Integer.parseInt(eventiban.getText());
+                String iban = ibanno.getText();
 
-                InsertData.createEvent(eventName.getText(), 5, ticket, date, locationText.getText(),
-                        price, iban);
+                Model.Event event = new Model.Event(eventText.getText(), 5, ticket, date, locationText.getText(), price,
+                        iban);
+
+                System.out.println(event.getName() + " " + event.getOrganizerId() + " " + event.getTicketNumber() + " " + event.getDate()
+                        + " " + event.getLocation() + " " + event.getPrice() + " " + event.getIBAN());
+
+
+                InsertData.createEvent(event.getName(), event.getOrganizerId(), event.getTicketNumber(), event.getDate(),
+                        event.getLocation(), event.getPrice(), event.getIBAN());
+
+
+                JOptionPane.showMessageDialog(null, "Event created succesfully!");
+                frame.dispose();
+
+
             }
         });
         frame.setVisible(true);

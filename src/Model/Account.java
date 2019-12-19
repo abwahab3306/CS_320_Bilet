@@ -1,26 +1,68 @@
 package Model;
 
-public interface Account {
+public abstract class Account {
 
-    int getId();
+    private int id;
+    private String name, lastname, password, email;
 
-    String getName();
 
-    String getLastname();
+    public Account(String name, String lastname, String email, String password) {
 
-    String getPassword();
+        this.name = name;
+        this.lastname = lastname;
+        this.email = email;
+        this.password = password;
+    }
 
-    String getEmail();
 
-    void setId(int i);
+    public int getId() {
+        return id;
+    }
 
-    void setName(String s);
 
-    void setLastname(String s);
+    public String getName() {
+        return this.name;
+    }
 
-    void setPassword(String s);
 
-    void setEmail(String s);
+    public String getLastname() {
+        return this.lastname;
+    }
+
+
+    public String getPassword() {
+        return this.password;
+    }
+
+
+    public String getEmail() {
+        return this.email;
+    }
+
+
+    public void setId(int i) {
+        this.id = i;
+    }
+
+
+    public void setName(String s) {
+        this.name = s;
+    }
+
+
+    public void setLastname(String s) {
+        this.lastname = s;
+    }
+
+
+    public void setPassword(String s) {
+        this.password = s;
+    }
+
+
+    public void setEmail(String s) {
+        this.email = s;
+    }
 
 
 }

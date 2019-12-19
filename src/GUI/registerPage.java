@@ -3,6 +3,7 @@ package GUI;
 import Database.InsertData;
 import Model.Organizer;
 import Model.User;
+import javafx.scene.control.DialogPane;
 
 import javax.swing.*;
 import java.awt.*;
@@ -95,20 +96,31 @@ public class registerPage {
                 super.mouseClicked(e);
 
                 if (usertype.equals("Organizer")) {
-                    User user = new User(name.getText(), surname.getText(), email.getText(), password.getText());
+                    User user = new User(nameEntry.getText(), surnameEntry.getText(), emailEntry.getText(), passwordEntry.getText());
+                    InsertData.insertAccount(true, user.getName(), user.getLastname(), user.getEmail(), user.getPassword());
+                    message(usertype);
+                    frame.dispose();
                 } else {
-                    Organizer organizer = new Organizer(name.getText(), surname.getText(), email.getText(), password.getText());
+                    Organizer organizer = new Organizer(nameEntry.getText(), surnameEntry.getText(), emailEntry.getText(), passwordEntry.getText());
+                    InsertData.insertAccount(true, organizer.getName(), organizer.getLastname(), organizer.getEmail(), organizer.getPassword());
+                    message(usertype);
+                    frame.dispose();
                 }
-                sendData(usertype);
+//                sendData(usertype);
             }
         });
+    }
+
+    public void message(String usertype) {
+        JOptionPane.showMessageDialog(null, "Succesfully registered as " + usertype + " !");
+
     }
 
     public void sendData(String usertype) {
         System.out.println("Usertype is " + usertype);
         if (usertype.equals("Organizer")) {
             InsertData.insertAccount(true, nameEntry.getText(), surnameEntry.getText(), emailEntry.getText(), passwordEntry.getText());
-            System.out.println("name: " + nameEntry.getText() + "surname: " + surnameEntry.getText() + "email: " + emailEntry.getText() + "pass " + passwordEntry.getText());
+            System.out.println("name: " + nameEntry.getText() + " - surname: " + surnameEntry.getText() + " - email: " + emailEntry.getText() + " - pass " + passwordEntry.getText());
         } else {
             InsertData.insertAccount(false, nameEntry.getText(), surnameEntry.getText(), emailEntry.getText(), passwordEntry.getText());
             System.out.println("name: " + nameEntry.getText() + " - surname: " + surnameEntry.getText() + " - email: " + emailEntry.getText() + " - pass " + passwordEntry.getText());
