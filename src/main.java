@@ -49,6 +49,7 @@ public class main {
 
         JFrame frame = new JFrame();
         frame.setVisible(true);
+        frame.setLayout(new BorderLayout());
         Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
         frame.setSize(500, 300);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -57,7 +58,8 @@ public class main {
         frame.setLocation(x, y);
 
         JPanel panel = new JPanel();
-        frame.add(panel);
+        frame.add(panel, BorderLayout.NORTH);
+
 
         JRadioButton radioUser = new JRadioButton("User");
         radioUser.setActionCommand("User");
@@ -70,12 +72,16 @@ public class main {
 
         panel.add(radioOrganizer);
         panel.add(radioUser);
+
+        JPanel panel2 = new JPanel();
+        frame.add(panel2, BorderLayout.CENTER);
+
         JButton but_login = new JButton("Login");
         JButton but_reg = new JButton("Register");
-        but_login.setLocation(150, 100);
-        but_reg.setLocation(50, 100);
-        panel.add(but_login);
-        panel.add(but_reg);
+//        but_login.setLocation(150, 150);
+//        but_reg.setLocation(50, 200);
+        panel2.add(but_login);
+        panel2.add(but_reg);
 
 
         but_login.addActionListener(new ActionListener() {

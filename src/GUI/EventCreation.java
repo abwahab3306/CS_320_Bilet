@@ -97,10 +97,10 @@ public class EventCreation {
                 int ticket = Integer.parseInt(ticket_num.getText());
                 String date = dateText.getText();
                 int price = Integer.parseInt(priceText.getText());
-                String iban = eventiban.getText();
+                String iban = ibanno.getText();
 
                 Model.Event event = new Model.Event(eventText.getText(), 5, ticket, date, locationText.getText(), price,
-                        ibanno.getText());
+                        iban);
 
                 System.out.println(event.getName() + " " + event.getOrganizerId() + " " + event.getTicketNumber() + " " + event.getDate()
                         + " " + event.getLocation() + " " + event.getPrice() + " " + event.getIBAN());
