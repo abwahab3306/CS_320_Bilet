@@ -75,6 +75,13 @@ public class OrganizerDashboard {
             }
         });
 
+        logout.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(null, "Logged out Succesfully!");
+                frame.dispose();
+            }
+        });
 
         frame.setVisible(true);
     }

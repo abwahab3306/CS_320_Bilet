@@ -81,13 +81,7 @@ public class UserDashboard {
                     DetailedEvent detailedEvent = new DetailedEvent(SelectedEvent);
                 }
             });
-/*
-            event.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    DetailedEvent detailedEvent = new DetailedEvent();
-                }
-            });*/
+
         }
 
         search.addMouseListener(new MouseAdapter() {
@@ -97,14 +91,14 @@ public class UserDashboard {
                 //?
             }
         });
-/*
-        search.addActionListener(new ActionListener() {
+
+        logout.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-               //?
+                JOptionPane.showMessageDialog(null, "Logged out Succesfully!");
+                frame.dispose();
             }
         });
-*/
 
 
         frame.setVisible(true);

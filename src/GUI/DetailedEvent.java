@@ -30,26 +30,12 @@ public class DetailedEvent {
         ImagePanel panel = new ImagePanel(new ImageIcon("Background3.jpg").getImage());
         panel.setLayout(null);
         frame.getContentPane().add(panel);
-
-       /* JLabel userName = new JLabel("Name: ");
-        userName.setFont(new Font("Calibri", Font.PLAIN, 22));
-        userName.setBounds(850, 10, 100, 100);
-        panel.add(userName);
-
-        JLabel userSurname = new JLabel("Surname: ");
-        userSurname.setFont(new Font("Calibri", Font.PLAIN, 22));
-        userSurname.setBounds(1050, 10, 200, 100);
-        panel.add(userSurname);
-
-        JButton logout = new JButton("Logout");
-        logout.setBounds(1300, 40, 100, 50);
-        panel.add(logout);*/
-
+        /*
         JLabel basket = new JLabel("Basket");
         basket.setBounds(300, 40, 100, 50);
         basket.setFont(new Font("Calibri", Font.BOLD, 22));
         panel.add(basket);
-
+*/
         JButton addToBasket = new JButton("Add to basket");
         addToBasket.setBounds(925, 500, 120, 50);
         panel.add(addToBasket);

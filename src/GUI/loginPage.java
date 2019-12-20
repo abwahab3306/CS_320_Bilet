@@ -28,7 +28,6 @@ public class loginPage {
         usertype = type;
 
 
-
         JFrame frame = new JFrame("LOGIN PAGE");
         frame.setSize(1920, 1080);
 
@@ -64,23 +63,22 @@ public class loginPage {
         loginButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String emailEntered= mailEntry.getText();
+                String emailEntered = mailEntry.getText();
                 String passwordEntered = passwordEntry.getText();
                 boolean what = false;
                 if (type.equals("Organizer")) {
-                try {
-                            what=getData.loginOrganizer(emailEntered,passwordEntered);
+                    try {
+                        what = getData.loginOrganizer(emailEntered, passwordEntered);
 
 
-
-                        } catch (SQLException ex) {
-                            ex.printStackTrace();
-                        }
-                    if (what==true){
+                    } catch (SQLException ex) {
+                        ex.printStackTrace();
+                    }
+                    if (what == true) {
                         message();
-                        Organizer org=null;
+                        Organizer org = null;
                         try {
-                           org = getData.getOrganizer(emailEntered);
+                            org = getData.getOrganizer(emailEntered);
                             System.out.println(emailEntered);
                             System.out.println(org.getEmail());
                         } catch (SQLException ex) {
@@ -99,14 +97,13 @@ public class loginPage {
                 } else {
 
 
-
                     try {
-                        what = getData.loginUser(emailEntered,passwordEntered);
+                        what = getData.loginUser(emailEntered, passwordEntered);
                     } catch (SQLException ex) {
                         ex.printStackTrace();
                     }
 
-                    if(what==true){
+                    if (what == true) {
                         message();
                         User user = null;
                         try {
@@ -120,12 +117,11 @@ public class loginPage {
                             ex.printStackTrace();
                         }
                         frame.dispose();
-                    }else {
+                    } else {
 
                         wronginfo();
 
                     }
-
 
 
                 }
