@@ -149,7 +149,8 @@ public class getData {
 
 	public static User getUser(String email) throws SQLException{
 		DB_Connection connection = new DB_Connection();
-		PreparedStatement ps = connection.conn.prepareStatement("SELECT * FROM users where email='"+email+"'" );
+		PreparedStatement ps = connection.conn.prepareStatement("SELECT * FROM users where email=?" );
+		ps.setString(1,email);
 		ResultSet rs = ps.executeQuery();
 
 		String name = null;
@@ -170,7 +171,8 @@ public class getData {
 
 	public static Organizer getOrganizer(String email) throws SQLException{
 		DB_Connection connection = new DB_Connection();
-		PreparedStatement ps = connection.conn.prepareStatement("SELECT * FROM organizers where email='"+email+"'" );
+		PreparedStatement ps = connection.conn.prepareStatement("SELECT * FROM organizers where email=?" );
+		ps.setString(1,email);
 		ResultSet rs = ps.executeQuery();
 		String name = null;
 		String surname = null;
