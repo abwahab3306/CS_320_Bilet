@@ -191,11 +191,11 @@ public class getData {
 
 
 
-	public static boolean loginUser(String name, String password) throws SQLException {
+	public static boolean loginUser(String email, String password) throws SQLException {
 		DB_Connection connection = new DB_Connection();
-        String sql = "SELECT * from users WHERE name=? and  password=?";
+        String sql = "SELECT * from users WHERE email=? and  password=?";
 		PreparedStatement ps = connection.conn.prepareStatement(sql);
-		ps.setString(1, name);
+		ps.setString(1, email);
 		ps.setString(2, password);
 		ResultSet rs = ps.executeQuery();
 		boolean isUserExist = false;
@@ -205,11 +205,11 @@ public class getData {
 		return isUserExist;
 	}
 
-	public static boolean loginOrganizer(String name, String password) throws SQLException {
+	public static boolean loginOrganizer(String email, String password) throws SQLException {
 		DB_Connection connection = new DB_Connection();
-        String sql = "SELECT * from organizers WHERE name=? and  password=?";
+        String sql = "SELECT * from organizers WHERE email=? and  password=?";
 		PreparedStatement ps = connection.conn.prepareStatement(sql);
-		ps.setString(1, name);
+		ps.setString(1, email);
 		ps.setString(2, password);
 		ResultSet rs = ps.executeQuery();
 		boolean isUserExist = false;
