@@ -6,7 +6,7 @@ public class DB_Connection {
 
 // remotemysql.com username: Sitch1982@cuvox.de password: bilet
 
-    public static Connection conn;
+    protected static Connection conn;
     private static Statement stmt;
 
 //    private static final String USER = "mohaabdev_ozan";
@@ -28,26 +28,46 @@ public class DB_Connection {
 
     }
 
-    /*public ResultSet send_query(String a) {
+    public ResultSet send_query(String a, String... s) {
 
         ResultSet rs = null;
         stmt = null;
 
         try {
             stmt = conn.createStatement();
-            rs = stmt.executeQuery(a);
+            rs = stmt.executeQuery("SELECT * FROM " + a);
 
-
-
-
+            while (rs.next()) {
+                System.out.println(rs.getString(s[0]) + " - " + rs.getString(s[1]) + " " + rs.getString(s[2]) + " " + rs.getString(s[3])
+                        + " " + rs.getString(s[4]));
+            }
         } catch (SQLException ex) {
             System.out.println("SQLException: " + ex.getMessage());
             System.out.println("SQLState: " + ex.getSQLState());
             System.out.println("VendorError: " + ex.getErrorCode());
-        }
+        } finally {
 
+
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException sqlEx) {
+                }
+
+                rs = null;
+            }
+
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                } catch (SQLException sqlEx) {
+                }
+
+                stmt = null;
+            }
+        }
         return rs;
-    }*/
+    }
 
     public void insertData(String query) {
 

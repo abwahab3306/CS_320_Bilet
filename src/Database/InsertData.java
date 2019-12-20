@@ -52,8 +52,6 @@ public class InsertData {
         try {
             DB_Connection connection = new DB_Connection();
             connection.insertData(query);
-            connection.close();
-
         } catch (SQLException e) {
 
         }
