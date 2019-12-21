@@ -14,10 +14,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class UserDashboard {
+    private int id;
     private String name;
     private String Lastname;
 
     public UserDashboard(User user) throws SQLException {
+
+        id = user.getId();
         name= user.getName();
         Lastname = user.getLastname();
         JFrame frame = new JFrame("USER DASHBOARD");
@@ -33,12 +36,14 @@ public class UserDashboard {
 
         JLabel userName = new JLabel("Name: " +name);
         userName.setFont(new Font("Calibri", Font.PLAIN, 22));
-        userName.setBounds(950, 10, 100, 100);
+        userName.setBounds(950, 10, 500, 100);
+        userName.setForeground(Color.WHITE);
         panel.add(userName);
 
         JLabel userSurname = new JLabel("Surname: " + Lastname);
         userSurname.setFont(new Font("Calibri", Font.PLAIN, 22));
-        userSurname.setBounds(1150, 10, 200, 100);
+        userSurname.setBounds(1150, 10, 500, 100);
+        userSurname.setForeground(Color.WHITE);
         panel.add(userSurname);
 
         JButton logout = new JButton("Logout");
@@ -73,7 +78,7 @@ public class UserDashboard {
                 @Override
                 public void mouseClicked(MouseEvent e) {
                     super.mouseClicked(e);
-                    DetailedEvent detailedEvent = new DetailedEvent(SelectedEvent);
+                    DetailedEvent detailedEvent = new DetailedEvent(id, SelectedEvent);
                 }
             });
 

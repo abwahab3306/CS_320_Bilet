@@ -10,11 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
+import javax.swing.*;
 
 public class IbanFrame {
 
@@ -55,6 +51,8 @@ public class IbanFrame {
         button.setSize(20, 20);
         button.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+
+                JOptionPane.showMessageDialog(null, "Ticket Purchased successfully!");
                 frame.dispose();
             }
         });

@@ -81,37 +81,6 @@ public class getData {
         return myEvents;
 
     }
-/*
-    public static ArrayList<Event> getAllEvents() throws SQLException {
-        ArrayList<Event> myEvents = new ArrayList<Event>();
-        DB_Connection connection = new DB_Connection();
-        PreparedStatement ps = connection.conn.prepareStatement("SELECT * FROM events");
-        ResultSet rs = ps.executeQuery();
-        int event_id = 0;
-        String name = null;
-        int organizer_id = 0;
-        int number_of_tickets = 0;
-        String date = null;
-        String location = null;
-        int price = 0;
-        String iban_no_organizer = null;
-        while (rs.next()) {
-            event_id = Integer.parseInt(rs.getString("event_id"));
-            name = rs.getString("name");
-            organizer_id = Integer.parseInt(rs.getString("organizer_id"));
-            number_of_tickets = Integer.parseInt(rs.getString("number_of_tickets"));
-            date = rs.getString("date");
-            location = rs.getString("location");
-            price = Integer.parseInt(rs.getString("price"));
-            iban_no_organizer = rs.getString("iban_no_organizer");
-            Event event = new Event(name, organizer_id, number_of_tickets, date, location, price, iban_no_organizer);
-            event.setId(event_id);
-            myEvents.add(event);
-        }
-        connection.close();
-        return myEvents;
-
-    }*/
 
     public static ArrayList<String> getSoldtickts(String qurey) throws SQLException {
         ArrayList<String> myEvents = new ArrayList<String>();

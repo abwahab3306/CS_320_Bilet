@@ -9,7 +9,9 @@ import java.awt.event.*;
 import java.sql.SQLException;
 
 public class DetailedEvent {
-    private static String finalNumOfTickets;
+    private static int finalNumOfTickets;
+    private int eventid;
+    private int userid;
     private String name;
     private String location;
     private int price;
@@ -17,7 +19,9 @@ public class DetailedEvent {
     private String Iban;
 
 
-    public DetailedEvent(Event event) {
+    public DetailedEvent(int id, Event event) {
+        eventid = event.getId();
+        userid = id;
         name = event.getName();
         location = event.getLocation();
         price = event.getPrice();
@@ -28,7 +32,7 @@ public class DetailedEvent {
         ui(name, location, date, Iban, price);
     }
 
-    private static void ui(String name, String location, String date, String Iban, int price) {
+    private void ui(String name, String location, String date, String Iban, int price) {
         JFrame frame = new JFrame("DETAILED EVENT");
         frame.setLayout(null);
         Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
@@ -37,24 +41,11 @@ public class DetailedEvent {
         ImagePanel panel = new ImagePanel(new ImageIcon("Background3.jpg").getImage());
         panel.setLayout(null);
         frame.getContentPane().add(panel);
-        /*
-        JLabel basket = new JLabel("Basket");
-        basket.setBounds(300, 40, 100, 50);
-        basket.setFont(new Font("Calibri", Font.BOLD, 22));
-        panel.add(basket);
-*//*
-        JButton addToBasket = new JButton("Add to basket");
-        addToBasket.setBounds(925, 500, 120, 50);
-        panel.add(addToBasket);
-*/
+
         JButton pay = new JButton("Pay now!");
-        pay.setBounds(1150, 500, 100, 50);
+        pay.setBounds(1000, 500, 100, 50);
         panel.add(pay);
-/*
-        JButton reduceTicket = new JButton("Reduce ticket");
-        reduceTicket.setBounds(1050, 500, 100, 50);
-        panel.add(reduceTicket);
-*/
+
         String Details = "Name: " + name + " \n" + "Location: " + location + "\n" + "Ticket Price: " + price + "\n" + "Date: " + date;
 
         JTextArea eventDetails = new JTextArea(Details, 50, 50);
@@ -71,73 +62,26 @@ public class DetailedEvent {
         ticketNumChoice.setBounds(800, 500, 100, 50);
         panel.add(ticketNumChoice);
 
-        JLabel numberChosen = new JLabel();
-        numberChosen.setFont(new Font("Calibri", Font.PLAIN, 22));
-        numberChosen.setBounds(400, 40, 200, 50);
-        numberChosen.setBackground(Color.DARK_GRAY);
-        panel.add(numberChosen);
 
-/*
-        addToBasket.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                super.mouseClicked(e);
-                numberChosen.setText(ticketNumChoice.getSelectedItem() + "tickets added!");
-            }
-        });
-*/
-       /* addToBasket.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                numberChosen.setText(ticketNumChoice.getSelectedItem() + "tickets added!");
-            }
-        });
-
-        pay.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                super.mouseClicked(e);
-                IbanFrame pay = new IbanFrame();
-            }
-        });
-*/
         pay.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
 
-                finalNumOfTickets = ticketNumChoice.getSelectedItem();
+                finalNumOfTickets = Integer.parseInt(ticketNumChoice.getSelectedItem().trim());
 
-//                InsertData.buyTicket();
+                InsertData.buyTicket(userid, eventid, finalNumOfTickets);
                 IbanFrame pay = new IbanFrame(Iban);
 
-                numberChosen.setText("0");
             }
         });
-/*
-        reduceTicket.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                super.mouseClicked(e);
-                finalNumOfTickets = ticketNumChoice.getSelectedItem() ;
-                numberChosen.setText(finalNumOfTickets + " tickets left!");
-            }
-        });
-
-        reduceTicket.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                finalNumOfTickets = ticketNumChoice.getSelectedItem();
-                numberChosen.setText(finalNumOfTickets + " tickets left!");
-            }
-        });*/
 
         frame.setVisible(true);
 
 
     }
 
-    private static void getId(){
+    private static void getId() {
 
     }
 }

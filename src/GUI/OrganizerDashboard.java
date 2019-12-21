@@ -37,17 +37,20 @@ public class OrganizerDashboard {
 
         JLabel organizerName = new JLabel("Name: " + name);
         organizerName.setFont(new Font("Calibri", Font.PLAIN, 22));
-        organizerName.setBounds(100, 100, 100, 100);
+        organizerName.setBounds(100, 100, 500, 100);
+        organizerName.setForeground(Color.WHITE);
         panel.add(organizerName);
 
         JLabel organizerSurname = new JLabel("Surname: " + lastname);
         organizerSurname.setFont(new Font("Calibri", Font.PLAIN, 22));
-        organizerSurname.setBounds(100, 200, 200, 100);
+        organizerSurname.setBounds(100, 200, 500, 100);
+        organizerSurname.setForeground(Color.WHITE);
         panel.add(organizerSurname);
 
         JLabel email = new JLabel("Email: " + orgemail);
         email.setFont(new Font("Calibri", Font.PLAIN, 22));
-        email.setBounds(100, 300, 100, 100);
+        email.setBounds(100, 300, 500, 100);
+        email.setForeground(Color.WHITE);
         panel.add(email);
 
         JButton createEvent = new JButton("Create Event");
@@ -66,6 +69,7 @@ public class OrganizerDashboard {
         JLabel events = new JLabel("All Events");
         events.setFont(new Font("Calibri", Font.BOLD, 32));
         events.setBounds(700, 60, 130, 50);
+        events.setBackground(Color.WHITE);
         panel.add(events);
 
 
@@ -104,7 +108,7 @@ public class OrganizerDashboard {
         try {
             ArrayList<Event> myevents = getData.getEvents(false, orgemail);
             if (myevents.size() < 1) {
-                JOptionPane.showMessageDialog(null, "events");
+                JOptionPane.showMessageDialog(null, "Sorry! You haven't created any event yet");
             }
 
             for (int i = 0; i < myevents.size(); i++) {
@@ -115,5 +119,9 @@ public class OrganizerDashboard {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private void events_gui(){
+
     }
 }
