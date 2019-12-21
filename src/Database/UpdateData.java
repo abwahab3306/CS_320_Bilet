@@ -6,9 +6,11 @@ import java.sql.SQLException;
 public class UpdateData {
 
     private static String table;
-    public static void updateEvent(int id, String name, int organizerid, int ticketnums, int date, String location, int price, int ibanno) {
-        String query = "UPDATE `events` SET `event_id`=" + id + ",`name`='" + name + "',`organizer_id`=" + organizerid + ",`number_of_tickets`=" +
-                ticketnums + "," + "`date`=" + date + ",`location`='" + location + "',`price`=" + price + ",`iban_no_organizer`=" + ibanno + " WHERE 1";
+
+    public static void updateEvent(int id, String name, int organizerid, int ticketnums, String date, String location, int price, String ibanno) {
+        String query = "UPDATE `events` SET `name`='" + name + "',`number_of_tickets`=" + ticketnums + ",`date`='"
+                + date + "',`location`='" + location + "',`price`=" + price + ",`iban_no_organizer`='" +
+                ibanno + "' WHERE `event_id`=" + id;
         send(query);
     }
 
@@ -21,6 +23,7 @@ public class UpdateData {
         String query = "UPDATE" + table + "SET 'password'=" + newPass + "WHERE email = " + Email;
         send(query);
     }
+
     private static void send(String query) {
         try {
             DB_Connection connection = new DB_Connection();

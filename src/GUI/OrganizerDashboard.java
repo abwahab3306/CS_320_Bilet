@@ -1,5 +1,6 @@
 package GUI;
 
+import Database.UpdateData;
 import Database.getData;
 import Model.Event;
 import Model.Organizer;
@@ -16,12 +17,16 @@ public class OrganizerDashboard {
     private String name;
     private String lastname;
     private String orgemail;
+    private ArrayList<Event> myevents;
 
     public OrganizerDashboard(Organizer organizer) throws SQLException {
         id = organizer.getId();
         name = organizer.getName();
         lastname = organizer.getLastname();
         orgemail = organizer.getEmail();
+
+
+        myevents = getData.getEvents(false, orgemail);
 
 
         JFrame frame = new JFrame("ORGANIZER DASHBOARD");
@@ -105,23 +110,165 @@ public class OrganizerDashboard {
 
     private void myevents() {
 
-        try {
-            ArrayList<Event> myevents = getData.getEvents(false, orgemail);
-            if (myevents.size() < 1) {
-                JOptionPane.showMessageDialog(null, "Sorry! You haven't created any event yet");
-            }
-
+        if (myevents.size() < 1) {
+            JOptionPane.showMessageDialog(null, "Sorry! You haven't created any event yet");
+        } else {
+            events_gui();
+        }
+/*
             for (int i = 0; i < myevents.size(); i++) {
                 System.out.println(i + "--" + myevents.get(i).getName());
 
+            }*/
 
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
-    private void events_gui(){
+    private void events_gui() {
+
+        JFrame frame = new JFrame("My Events");
+
+        Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+        frame.setSize(1000, 600);
+        int x = (int) ((dimension.getWidth() - frame.getWidth()) / 2);
+        int y = (int) ((dimension.getHeight() - frame.getHeight()) / 2);
+        frame.setLocation(x, y);
+//        frame.setLayout(new BorderLayout());
+
+        frame.setVisible(true);
+
+        JPanel listpanel = new JPanel();
+        frame.add(listpanel);
+
+        JList list = new JList();
+        list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        list.setPreferredSize(new Dimension(180, 179));
+        listpanel.add(list);
+
+        DefaultListModel dlm = new DefaultListModel();
+        for (int i = 0; i < myevents.size(); i++) {
+            dlm.addElement(myevents.get(i).getName());
+
+        }
+        list.setModel(dlm);
+        JButton btnupdate = new JButton("Change");
+        listpanel.add(btnupdate);
+
+//        int a = i.getid ;
+//        UpdateData.updateEvent(a,newname,id,int ticketnum, int date, String location, int price, int ibanno);
+
+       /* JPanel bottom = new JPanel();
+        frame.add(bottom, BorderLayout.CENTER);
+*/
+//        bottom.setLayout(new FlowLayout());
+
+        btnupdate.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFrame frame = new JFrame("New Event");
+
+                Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+                frame.setSize(600, 450);
+                int x = (int) ((dimension.getWidth() - frame.getWidth()) / 2);
+                int y = (int) ((dimension.getHeight() - frame.getHeight()) / 2);
+                frame.setLocation(x, y);
+
+                frame.setVisible(true);
+                JPanel panel = new JPanel();
+                panel.setLayout(null);
+
+                frame.add(panel);
+
+                JLabel eventName = new JLabel("Event Name:");
+                eventName.setFont(new Font("Calibri", Font.PLAIN, 15));
+                eventName.setBounds(50, 50, 120, 30);
+                panel.add(eventName);
+
+                JTextField eventText = new JTextField();
+                eventText.setFont(new Font("Calibri", Font.PLAIN, 15));
+                eventText.setBounds(180, 50, 300, 30);
+                panel.add(eventText);
+
+                JLabel event_ticket = new JLabel("Ticket Number:");
+                event_ticket.setFont(new Font("Calibri", Font.PLAIN, 15));
+                event_ticket.setBounds(50, 100, 120, 30);
+                panel.add(event_ticket);
+
+                JTextField ticket_num = new JTextField();
+                ticket_num.setFont(new Font("Calibri", Font.PLAIN, 15));
+                ticket_num.setBounds(180, 100, 300, 30);
+                panel.add(ticket_num);
+
+                JLabel event_date = new JLabel("Date:");
+                event_date.setFont(new Font("Calibri", Font.PLAIN, 15));
+                event_date.setBounds(50, 150, 120, 30);
+                panel.add(event_date);
+
+                JTextField dateText = new JTextField();
+                dateText.setFont(new Font("Calibri", Font.PLAIN, 15));
+                dateText.setBounds(180, 150, 300, 30);
+                panel.add(dateText);
+
+                JLabel eventLocation = new JLabel("Location:");
+                eventLocation.setFont(new Font("Calibri", Font.PLAIN, 15));
+                eventLocation.setBounds(50, 200, 120, 30);
+                panel.add(eventLocation);
+
+                JTextField locationText = new JTextField();
+                locationText.setFont(new Font("Calibri", Font.PLAIN, 15));
+                locationText.setBounds(180, 200, 300, 30);
+                panel.add(locationText);
+
+                JLabel eventPrice = new JLabel("Price:");
+                eventPrice.setFont(new Font("Calibri", Font.PLAIN, 15));
+                eventPrice.setBounds(50, 250, 120, 30);
+                panel.add(eventPrice);
+
+                JTextField priceText = new JTextField();
+                priceText.setFont(new Font("Calibri", Font.PLAIN, 15));
+                priceText.setBounds(180, 250, 300, 30);
+                panel.add(priceText);
+
+                JLabel eventiban = new JLabel("IBAN:");
+                eventiban.setFont(new Font("Calibri", Font.PLAIN, 15));
+                eventiban.setBounds(50, 300, 120, 30);
+                panel.add(eventiban);
+
+                JTextField ibanno = new JTextField();
+                ibanno.setFont(new Font("Calibri", Font.PLAIN, 15));
+                ibanno.setBounds(180, 300, 300, 30);
+                panel.add(ibanno);
+
+                JButton button = new JButton("Update Event");
+                button.setBounds(x / 2, 350, 150, 30);
+                panel.add(button);
+
+                button.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+
+                        Event evt = myevents.get(list.getSelectedIndex());
+                        int id = evt.getId();
+                        int orgid = evt.getOrganizerId();
+                        String name = eventText.getText();
+                        int ticket = Integer.parseInt(ticket_num.getText());
+                        String date = dateText.getText();
+                        String location = locationText.getText();
+                        int price = Integer.parseInt(priceText.getText());
+                        String iban = ibanno.getText();
+
+                        System.out.println("id = " + id + " orgid = " + orgid + " name= " + name + " ticket = " + ticket + " date= " + date + " location= "
+                                + location + " price = " + price + " iban= " + iban);
+                        UpdateData.updateEvent(id, name, orgid, ticket, date, location, price, iban);
+
+                        JOptionPane.showMessageDialog(null, "Event updated succesfully!");
+                        frame.dispose();
+
+
+                    }
+                });
+
+            }
+        });
 
     }
 }

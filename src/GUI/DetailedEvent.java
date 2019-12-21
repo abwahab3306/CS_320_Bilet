@@ -81,7 +81,5 @@ public class DetailedEvent {
 
     }
 
-    private static void getId() {
 
-    }
 }

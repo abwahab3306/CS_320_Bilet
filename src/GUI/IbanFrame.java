@@ -4,8 +4,7 @@ package GUI;
 
 import Database.getData;
 
-import java.awt.Color;
-import java.awt.Font;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
@@ -31,6 +30,11 @@ public class IbanFrame {
 
         frame.setSize(500, 200);
 
+        Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+        int x = (int) ((dimension.getWidth() - frame.getWidth()) / 2);
+        int y = (int) ((dimension.getHeight() - frame.getHeight()) / 2);
+
+        frame.setLocation(x, y);
 
         JPanel panel = new JPanel();
         panel.setBackground(Color.gray);
