@@ -1,6 +1,7 @@
 package Model;
 
 public class Event {
+    private int id;
     private String name;
     private int organizerId;
     private int ticketNumber;
@@ -17,6 +18,13 @@ public class Event {
         this.location = location;
         this.price = price;
         this.IBAN = IBAN;
+    }
+    public void setId(int i){
+        this.id = i;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getName() {

@@ -79,6 +79,7 @@ public class loginPage {
                         Organizer org = null;
                         try {
                             org = getData.getOrganizer(emailEntered);
+                            org.setId(getData.getId(true, emailEntered));
                             System.out.println(emailEntered);
                             System.out.println(org.getEmail());
                         } catch (SQLException ex) {
@@ -108,6 +109,7 @@ public class loginPage {
                         User user = null;
                         try {
                             user = getData.getUser(emailEntered);
+                            user.setId(getData.getId(false, emailEntered));
                         } catch (SQLException ex) {
                             ex.printStackTrace();
                         }

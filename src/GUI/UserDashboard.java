@@ -45,11 +45,6 @@ public class UserDashboard {
         logout.setBounds(1300, 40, 100, 50);
         panel.add(logout);
 
-        JLabel basket = new JLabel("Basket");
-        basket.setBounds(300, 40, 100, 50);
-        basket.setFont(new Font("Calibri", Font.BOLD,22));
-
-        panel.add(basket);
 
         JLabel events = new JLabel("BILET");
         events.setFont(new Font("Calibri", Font.BOLD, 32));
@@ -64,7 +59,7 @@ public class UserDashboard {
 
         int y = 150;
         JButton event = null;
-        ArrayList<Event> Allevents = getData.getAllEvents();
+        ArrayList<Event> Allevents = getData.getEvents(true, null);
 
         for (int eventNumber = 0; eventNumber < Allevents.size(); eventNumber++) {
             Event SelectedEvent = Allevents.get(eventNumber);

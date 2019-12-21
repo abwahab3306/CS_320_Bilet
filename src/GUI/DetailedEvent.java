@@ -1,5 +1,6 @@
 package GUI;
 
+import Database.InsertData;
 import Model.Event;
 
 import javax.swing.*;
@@ -9,16 +10,22 @@ import java.sql.SQLException;
 
 public class DetailedEvent {
     private static String finalNumOfTickets;
+    private String name;
+    private String location;
+    private int price;
+    private String date;
+    private String Iban;
+
 
     public DetailedEvent(Event event) {
-        String name = event.getName();
-        String location = event.getLocation();
-        int price = event.getPrice();
-        String date= event.getDate();
-        String Iban = event.getIBAN();
+        name = event.getName();
+        location = event.getLocation();
+        price = event.getPrice();
+        date = event.getDate();
+        Iban = event.getIBAN();
 
 
-        ui(name,location,date,Iban,price);
+        ui(name, location, date, Iban, price);
     }
 
     private static void ui(String name, String location, String date, String Iban, int price) {
@@ -35,22 +42,22 @@ public class DetailedEvent {
         basket.setBounds(300, 40, 100, 50);
         basket.setFont(new Font("Calibri", Font.BOLD, 22));
         panel.add(basket);
-*/
+*//*
         JButton addToBasket = new JButton("Add to basket");
         addToBasket.setBounds(925, 500, 120, 50);
         panel.add(addToBasket);
-
+*/
         JButton pay = new JButton("Pay now!");
         pay.setBounds(1150, 500, 100, 50);
         panel.add(pay);
-
+/*
         JButton reduceTicket = new JButton("Reduce ticket");
         reduceTicket.setBounds(1050, 500, 100, 50);
         panel.add(reduceTicket);
+*/
+        String Details = "Name: " + name + " \n" + "Location: " + location + "\n" + "Ticket Price: " + price + "\n" + "Date: " + date;
 
-        String Details="Name: "+name+" \n" + "Location: "+location +"\n"+"Ticket Price: "+price +"\n"+"Date: "+date;
-
-        JTextArea eventDetails = new JTextArea(Details , 50, 50);
+        JTextArea eventDetails = new JTextArea(Details, 50, 50);
 
         eventDetails.setBounds(300, 100, 900, 375);
         eventDetails.setVisible(true);
@@ -58,7 +65,7 @@ public class DetailedEvent {
         panel.add(eventDetails);
 
         Choice ticketNumChoice = new Choice();
-        for (int i = 1; i < 10; i++) {
+        for (int i = 1; i <= 10; i++) {
             ticketNumChoice.add(" " + i + " ");
         }
         ticketNumChoice.setBounds(800, 500, 100, 50);
@@ -79,13 +86,13 @@ public class DetailedEvent {
             }
         });
 */
-        addToBasket.addActionListener(new ActionListener() {
+       /* addToBasket.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 numberChosen.setText(ticketNumChoice.getSelectedItem() + "tickets added!");
             }
         });
-/*
+
         pay.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -98,9 +105,12 @@ public class DetailedEvent {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                    IbanFrame pay = new IbanFrame(Iban);
 
-                //finalNumOfTickets = ticketNumChoice.getSelectedItem() ;
+                finalNumOfTickets = ticketNumChoice.getSelectedItem();
+
+//                InsertData.buyTicket();
+                IbanFrame pay = new IbanFrame(Iban);
+
                 numberChosen.setText("0");
             }
         });
@@ -112,7 +122,7 @@ public class DetailedEvent {
                 finalNumOfTickets = ticketNumChoice.getSelectedItem() ;
                 numberChosen.setText(finalNumOfTickets + " tickets left!");
             }
-        });*/
+        });
 
         reduceTicket.addActionListener(new ActionListener() {
             @Override
@@ -120,10 +130,14 @@ public class DetailedEvent {
                 finalNumOfTickets = ticketNumChoice.getSelectedItem();
                 numberChosen.setText(finalNumOfTickets + " tickets left!");
             }
-        });
+        });*/
 
         frame.setVisible(true);
 
+
+    }
+
+    private static void getId(){
 
     }
 }

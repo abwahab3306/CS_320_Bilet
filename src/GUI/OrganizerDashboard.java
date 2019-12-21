@@ -12,13 +12,15 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class OrganizerDashboard {
+    private int id;
     private String name;
     private String lastname;
     private String orgemail;
 
     public OrganizerDashboard(Organizer organizer) throws SQLException {
+        id = organizer.getId();
         name = organizer.getName();
-        lastname =organizer.getLastname();
+        lastname = organizer.getLastname();
         orgemail = organizer.getEmail();
 
 
@@ -38,7 +40,7 @@ public class OrganizerDashboard {
         organizerName.setBounds(100, 100, 100, 100);
         panel.add(organizerName);
 
-        JLabel organizerSurname = new JLabel("Surname: "+ lastname);
+        JLabel organizerSurname = new JLabel("Surname: " + lastname);
         organizerSurname.setFont(new Font("Calibri", Font.PLAIN, 22));
         organizerSurname.setBounds(100, 200, 200, 100);
         panel.add(organizerSurname);
@@ -68,10 +70,21 @@ public class OrganizerDashboard {
 
 
         createEvent.addActionListener(new ActionListener() {
-            ArrayList<Event> events = getData.getMyEvents(orgemail);
+//            ArrayList<Event> events = getData.getEvents(true, orgemail);
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 EventCreation newEvent = new EventCreation();
+
+            }
+        });
+
+        myEvents.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                myevents();
             }
         });
 
@@ -84,5 +97,23 @@ public class OrganizerDashboard {
         });
 
         frame.setVisible(true);
+    }
+
+    private void myevents() {
+
+        try {
+            ArrayList<Event> myevents = getData.getEvents(false, orgemail);
+            if (myevents.size() < 1) {
+                JOptionPane.showMessageDialog(null, "events");
+            }
+
+            for (int i = 0; i < myevents.size(); i++) {
+                System.out.println(i + "--" + myevents.get(i).getName());
+
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
