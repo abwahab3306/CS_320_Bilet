@@ -24,6 +24,12 @@ public class UpdateData {
         send(query);
     }
 
+    public static void updateTicket(int id, int number) {
+
+        String query = "UPDATE `events` SET `number_of_tickets`='" + number + "' WHERE `event_id` = '" + id + "'";
+        send(query);
+    }
+
     private static void send(String query) {
         try {
             DB_Connection connection = new DB_Connection();

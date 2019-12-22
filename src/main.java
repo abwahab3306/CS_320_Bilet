@@ -19,10 +19,7 @@ public class main {
         instantiateJDBC();
         try {
             connection = new DB_Connection();
-           /* System.out.println("Current Users: ");
-            connection.send_query("users", "user_id", "name", "surname", "email", "password");
-            System.out.println("Current Organizers: ");
-            connection.send_query("organizers", "organizer_id", "name", "surname", "email", "password");*/
+
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -61,6 +58,7 @@ public class main {
         frame.add(panel, BorderLayout.NORTH);
 
 
+
         JRadioButton radioUser = new JRadioButton("User");
         radioUser.setActionCommand("User");
         JRadioButton radioOrganizer = new JRadioButton("Organizer");
@@ -78,8 +76,7 @@ public class main {
 
         JButton but_login = new JButton("Login");
         JButton but_reg = new JButton("Register");
-//        but_login.setLocation(150, 150);
-//        but_reg.setLocation(50, 200);
+
         panel2.add(but_login);
         panel2.add(but_reg);
 

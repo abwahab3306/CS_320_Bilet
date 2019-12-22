@@ -35,6 +35,25 @@ public class getData {
         return ID;
     }
 
+    public static String getOrganizer(int orgid) throws SQLException {
+
+        String fullname = "";
+        DB_Connection connection = new DB_Connection();
+        String query = "SELECT name, surname from organizers WHERE organizer_id=" + orgid;
+        PreparedStatement ps = connection.conn.prepareStatement(query);
+        ResultSet rs = ps.executeQuery();
+
+        while (rs.next()) {
+
+            String name = rs.getString("name");
+            String surname = rs.getString("surname");
+            fullname = name + surname;
+        }
+
+        return fullname;
+
+    }
+
     public static ArrayList<String> getMytickets(String Email) {
         ArrayList<String> mytickets = new ArrayList<String>();
         return mytickets;
