@@ -10,8 +10,11 @@ import Database.InsertData;
 
 public class EventCreation {
 
-    public EventCreation() {
+    private int organizerID;
 
+    public EventCreation(int id) {
+
+        organizerID = id;
         gui();
     }
 
@@ -103,7 +106,7 @@ public class EventCreation {
                 int price = Integer.parseInt(priceText.getText());
                 String iban = ibanno.getText();
 
-                Model.Event event = new Model.Event(eventText.getText(), 5, ticket, date, locationText.getText(), price,
+                Model.Event event = new Model.Event(eventText.getText(), organizerID, ticket, date, locationText.getText(), price,
                         iban);
 
                 System.out.println(event.getName() + " " + event.getOrganizerId() + " " + event.getTicketNumber() + " " + event.getDate()

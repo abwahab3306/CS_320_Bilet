@@ -88,7 +88,7 @@ public class OrganizerDashboard {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                EventCreation newEvent = new EventCreation();
+                EventCreation newEvent = new EventCreation(id);
 
             }
         });
@@ -146,7 +146,9 @@ public class OrganizerDashboard {
 
         JList list = new JList();
         list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        list.setPreferredSize(new Dimension(180, 179));
+        list.setBounds(300,150,250,500);
+//        list.setPreferredSize(new Dimension(180, 179));
+        list.setFont(new Font("Calibri", Font.PLAIN, 20));
         listpanel.add(list);
 
         DefaultListModel dlm = new DefaultListModel();

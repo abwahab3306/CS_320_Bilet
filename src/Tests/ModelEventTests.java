@@ -1,10 +1,12 @@
 
 package Tests;
-/*
-import static org.junit.Assert.assertEquals;
+
+
 import org.junit.jupiter.api.Test;
 
 import Model.Event;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ModelEventTests {
     @Test
@@ -77,4 +79,4 @@ public class ModelEventTests {
         assertEquals("87123618", event.getIBAN());
     }
 }
-*/
+

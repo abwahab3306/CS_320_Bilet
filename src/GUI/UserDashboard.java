@@ -68,10 +68,10 @@ public class UserDashboard {
         search.setVisible(true);
         panel.add(search);
 
-        int y = 150;
-        JButton event = null;
+//        int y = 150;
+//        JButton event = null;
 
-
+/*
         for (int eventNumber = 0; eventNumber < Allevents.size(); eventNumber++) {
             Event SelectedEvent = Allevents.get(eventNumber);
             event = new JButton(SelectedEvent.getName());
@@ -88,7 +88,31 @@ public class UserDashboard {
                 }
             });
 
+        }*/
+
+        JList list = new JList();
+        list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        list.setBounds(500, 180, 500, 500);
+        list.setFont(new Font("Calibri", Font.PLAIN, 20));
+        panel.add(list);
+
+        DefaultListModel dlm = new DefaultListModel();
+        for (int eventNum = 0; eventNum < Allevents.size(); eventNum++) {
+            Event SelectedEvent = Allevents.get(eventNum);
+            dlm.addElement(SelectedEvent.getName());
+
         }
+        list.setModel(dlm);
+        JButton details = new JButton("Details");
+        details.setBounds(1100, 200, 100, 50);
+        panel.add(details);
+
+        details.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                DetailedEvent detailedEvent = new DetailedEvent(id, Allevents.get(list.getSelectedIndex()));
+            }
+        });
 
         search.addMouseListener(new MouseAdapter() {
             @Override
