@@ -1,8 +1,6 @@
 package GUI;
 
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.Toolkit;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -13,6 +11,11 @@ import Database.InsertData;
 public class EventCreation {
 
     public EventCreation() {
+
+        gui();
+    }
+
+    public void gui(){
 
         JFrame frame = new JFrame("New Event");
 
@@ -25,6 +28,7 @@ public class EventCreation {
         JPanel panel = new JPanel();
         panel.setLayout(null);
         frame.add(panel);
+        panel.setBackground(Color.gray);
 
         JLabel eventName = new JLabel("Event Name:");
         eventName.setFont(new Font("Calibri", Font.PLAIN, 15));

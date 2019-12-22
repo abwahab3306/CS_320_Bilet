@@ -23,6 +23,10 @@ public class registerPage {
     public registerPage(String type) {
 
         usertype = type;
+        registerUi();
+    }
+
+    public void registerUi() {
 
         JFrame frame = new JFrame("REGISTER PAGE");
         Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
@@ -106,7 +110,7 @@ public class registerPage {
                     message(usertype);
                     frame.dispose();
                 }
-               sendData(usertype);
+                sendData(usertype);
             }
         });
     }

@@ -20,13 +20,18 @@ public class OrganizerDashboard {
     private ArrayList<Event> myevents;
 
     public OrganizerDashboard(Organizer organizer) throws SQLException {
+
         id = organizer.getId();
         name = organizer.getName();
         lastname = organizer.getLastname();
         orgemail = organizer.getEmail();
 
-
         myevents = getData.getEvents(false, orgemail);
+
+        organizerui();
+    }
+
+    public void organizerui() {
 
 
         JFrame frame = new JFrame("ORGANIZER DASHBOARD");
@@ -174,6 +179,7 @@ public class OrganizerDashboard {
 
                 frame.setVisible(true);
                 JPanel panel = new JPanel();
+                panel.setBackground(Color.gray);
                 panel.setLayout(null);
 
                 frame.add(panel);

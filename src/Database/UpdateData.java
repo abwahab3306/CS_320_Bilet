@@ -20,7 +20,7 @@ public class UpdateData {
         } else {
             table = "users";
         }
-        String query = "UPDATE" + table + "SET 'password'=" + newPass + "WHERE email = " + Email;
+        String query = "UPDATE `" + table + "` SET `password`='" + newPass + "' WHERE `email` = '" + Email + "'";
         send(query);
     }
 

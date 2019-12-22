@@ -17,12 +17,19 @@ public class UserDashboard {
     private int id;
     private String name;
     private String Lastname;
+    private ArrayList<Event> Allevents;
 
     public UserDashboard(User user) throws SQLException {
 
         id = user.getId();
-        name= user.getName();
+        name = user.getName();
         Lastname = user.getLastname();
+        Allevents = getData.getEvents(true, null);
+
+        userUi();
+    }
+
+    private void userUi() {
         JFrame frame = new JFrame("USER DASHBOARD");
         frame.setLayout(null);
         Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
@@ -33,8 +40,7 @@ public class UserDashboard {
         frame.getContentPane().add(panel);
 
 
-
-        JLabel userName = new JLabel("Name: " +name);
+        JLabel userName = new JLabel("Name: " + name);
         userName.setFont(new Font("Calibri", Font.PLAIN, 22));
         userName.setBounds(950, 10, 500, 100);
         userName.setForeground(Color.WHITE);
@@ -56,15 +62,15 @@ public class UserDashboard {
         events.setBounds(700, 40, 500, 50);
         panel.add(events);
 
-        JTextField search = new JTextField("Search here!") ;
+        JTextField search = new JTextField("Search here!");
         search.setFont(new Font("Calibri", Font.PLAIN, 22));
-        search.setBounds(500,110,500,50);
+        search.setBounds(500, 110, 500, 50);
         search.setVisible(true);
         panel.add(search);
 
         int y = 150;
         JButton event = null;
-        ArrayList<Event> Allevents = getData.getEvents(true, null);
+
 
         for (int eventNumber = 0; eventNumber < Allevents.size(); eventNumber++) {
             Event SelectedEvent = Allevents.get(eventNumber);
@@ -103,7 +109,6 @@ public class UserDashboard {
 
         frame.setVisible(true);
     }
-
 
 
 }
