@@ -26,8 +26,6 @@ public class OrganizerDashboard {
         lastname = organizer.getLastname();
         orgemail = organizer.getEmail();
 
-        myevents = getData.getEvents(false, orgemail);
-
         organizerui();
     }
 
@@ -115,9 +113,16 @@ public class OrganizerDashboard {
 
     private void myevents() {
 
+        try {
+            myevents = getData.getEvents(false, orgemail);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         if (myevents.size() < 1) {
             JOptionPane.showMessageDialog(null, "Sorry! You haven't created any event yet");
         } else {
+
             events_gui();
         }
 /*
@@ -137,17 +142,15 @@ public class OrganizerDashboard {
         int x = (int) ((dimension.getWidth() - frame.getWidth()) / 2);
         int y = (int) ((dimension.getHeight() - frame.getHeight()) / 2);
         frame.setLocation(x, y);
-//        frame.setLayout(new BorderLayout());
 
-        frame.setVisible(true);
 
         JPanel listpanel = new JPanel();
+        listpanel.setLayout(null);
         frame.add(listpanel);
 
         JList list = new JList();
         list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        list.setBounds(300,150,250,500);
-//        list.setPreferredSize(new Dimension(180, 179));
+        list.setBounds(150, 50,500, 400);
         list.setFont(new Font("Calibri", Font.PLAIN, 20));
         listpanel.add(list);
 
@@ -158,15 +161,9 @@ public class OrganizerDashboard {
         }
         list.setModel(dlm);
         JButton btnupdate = new JButton("Change");
+        btnupdate.setBounds(700, 200, 100, 50);
         listpanel.add(btnupdate);
 
-//        int a = i.getid ;
-//        UpdateData.updateEvent(a,newname,id,int ticketnum, int date, String location, int price, int ibanno);
-
-       /* JPanel bottom = new JPanel();
-        frame.add(bottom, BorderLayout.CENTER);
-*/
-//        bottom.setLayout(new FlowLayout());
 
         btnupdate.addActionListener(new ActionListener() {
             @Override
@@ -277,6 +274,7 @@ public class OrganizerDashboard {
 
             }
         });
+        frame.setVisible(true);
 
     }
 }
