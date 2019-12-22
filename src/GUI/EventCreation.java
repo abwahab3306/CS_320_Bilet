@@ -11,6 +11,7 @@ import Database.InsertData;
 public class EventCreation {
 
     private int organizerID;
+    private JFrame frame;
 
     public EventCreation(int id) {
 
@@ -18,9 +19,13 @@ public class EventCreation {
         gui();
     }
 
+    public JFrame getFrame(){
+        return frame;
+    }
+
     public void gui(){
 
-        JFrame frame = new JFrame("New Event");
+        frame = new JFrame("New Event");
 
         Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
         frame.setSize(600, 450);
