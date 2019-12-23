@@ -6,15 +6,17 @@ public class DeleteData {
 
     public static void deleteEvent(int event_id) {
 
-        String query = "DELETE FROM `events` WHERE `events`.`event_id` =" + event_id;
+        deleteTicket(event_id);
+
+        String query = "DELETE FROM `events` WHERE `event_id` =" + event_id;
 
         send(query);
 
     }
 
-    public static void deleteTicket(int user_id) {
+    public static void deleteTicket(int event_id) {
 
-        String query = "DELETE FROM `reservations` WHERE `reservations`.`user_id` =" + user_id;
+        String query = "DELETE FROM `reservations` WHERE `event_id` =" + event_id;
 
         send(query);
 
