@@ -2,6 +2,7 @@ package Tests;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import Database.getData;
 import GUI.DetailedEvent;
 import GUI.IbanFrame;
 import Model.Event;
@@ -19,4 +20,5 @@ public class UserDashboardTest {
         IbanFrame iban = new IbanFrame("65736256");
         assertEquals("Payment", iban.getFrame().getName());
     }
+
 }

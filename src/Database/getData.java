@@ -169,6 +169,36 @@ public class getData {
         return temp;
     }
 
+    public static Event getLastInsertedEvent() throws SQLException {
+        DB_Connection connection = new DB_Connection();
+        PreparedStatement ps = connection.conn.prepareStatement("SELECT * FROM events");
+        ResultSet rs = ps.executeQuery();
+
+        int event_id = 0;
+        String name = null;
+        int organizer_id = 0;
+        int number_of_tickets = 0;
+        String date = null;
+        String location = null;
+        int price = 0;
+        String iban_no_organizer = null;
+        while (rs.next()) {
+
+            event_id = Integer.parseInt(rs.getString("event_id"));
+            name = rs.getString("name");
+            organizer_id = Integer.parseInt(rs.getString("organizer_id"));
+            number_of_tickets = Integer.parseInt(rs.getString("number_of_tickets"));
+            date = rs.getString("date");
+            location = rs.getString("location");
+            price = Integer.parseInt(rs.getString("price"));
+            iban_no_organizer = rs.getString("iban_no_organizer");
+
+        }
+        Event temp = new Event(name, organizer_id, number_of_tickets, date, location, price, iban_no_organizer);
+        temp.setId(event_id);
+        return temp;
+    }
+
     public static User getUser(String email) throws SQLException {
         DB_Connection connection = new DB_Connection();
         PreparedStatement ps = connection.conn.prepareStatement("SELECT * FROM users where email='" + email + "'");

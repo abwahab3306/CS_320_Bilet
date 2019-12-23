@@ -97,8 +97,7 @@ public class loginPage {
                         try {
                             org = getData.getOrganizer(emailEntered);
                             org.setId(getData.getId(true, emailEntered));
-                            System.out.println(emailEntered);
-                            System.out.println(org.getEmail());
+
                         } catch (SQLException ex) {
                             ex.printStackTrace();
                         }
