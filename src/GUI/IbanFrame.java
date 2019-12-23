@@ -1,31 +1,29 @@
 package GUI;
 
 
-
-import Database.getData;
-
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.SQLException;
+
 
 import javax.swing.*;
 
 public class IbanFrame {
 
-    private static JTextField iban;
+    //    private static JTextField iban;
     private static JButton button;
     private static JLabel txt, txt2, txt3;
+    private static String iban;
 
-
-    public IbanFrame(String Iban)  {
+    public IbanFrame(String Iban) {
 
 //        Color color = new Color(128, 0, 0);
+        iban = Iban;
 
-        ui(Iban);
+        ui();
     }
 
-    public static void ui(String iban)  {
+    public static void ui() {
         JFrame frame = new JFrame("Payment");
 
         frame.setSize(500, 200);
@@ -49,7 +47,9 @@ public class IbanFrame {
         txt2.setFont(new Font("Calibri", Font.ITALIC, 13));
 
 
-        IbanFrame.iban = new JTextField("IBAN: "+iban); // iban query will be provided here
+        JLabel ibanLabel = new JLabel("IBAN: " + iban);
+        ibanLabel.setForeground(Color.BLUE);
+
 
         button = new JButton("OK");
         button.setSize(20, 20);
@@ -66,7 +66,8 @@ public class IbanFrame {
 
 
         panel.add(txt);
-        panel.add(IbanFrame.iban);
+
+        panel.add(ibanLabel);
         panel.add(txt2);
         panel.add(txt3);
         panel.add(button);

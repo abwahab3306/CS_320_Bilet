@@ -17,12 +17,19 @@ public class UserDashboard {
     private int id;
     private String name;
     private String Lastname;
+    private ArrayList<Event> Allevents;
 
     public UserDashboard(User user) throws SQLException {
 
         id = user.getId();
-        name= user.getName();
+        name = user.getName();
         Lastname = user.getLastname();
+        Allevents = getData.getEvents(true, null);
+
+        userUi();
+    }
+
+    private void userUi() {
         JFrame frame = new JFrame("USER DASHBOARD");
         frame.setLayout(null);
         Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
@@ -33,8 +40,7 @@ public class UserDashboard {
         frame.getContentPane().add(panel);
 
 
-
-        JLabel userName = new JLabel("Name: " +name);
+        JLabel userName = new JLabel("Name: " + name);
         userName.setFont(new Font("Calibri", Font.PLAIN, 22));
         userName.setBounds(950, 10, 500, 100);
         userName.setForeground(Color.WHITE);
@@ -56,16 +62,16 @@ public class UserDashboard {
         events.setBounds(700, 40, 500, 50);
         panel.add(events);
 
-        JTextField search = new JTextField("Search here!") ;
+        JTextField search = new JTextField("Search here!");
         search.setFont(new Font("Calibri", Font.PLAIN, 22));
-        search.setBounds(500,110,500,50);
+        search.setBounds(500, 110, 500, 50);
         search.setVisible(true);
         panel.add(search);
 
-        int y = 150;
-        JButton event = null;
-        ArrayList<Event> Allevents = getData.getEvents(true, null);
+//        int y = 150;
+//        JButton event = null;
 
+/*
         for (int eventNumber = 0; eventNumber < Allevents.size(); eventNumber++) {
             Event SelectedEvent = Allevents.get(eventNumber);
             event = new JButton(SelectedEvent.getName());
@@ -82,7 +88,31 @@ public class UserDashboard {
                 }
             });
 
+        }*/
+
+        JList list = new JList();
+        list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        list.setBounds(500, 180, 500, 500);
+        list.setFont(new Font("Calibri", Font.PLAIN, 20));
+        panel.add(list);
+
+        DefaultListModel dlm = new DefaultListModel();
+        for (int eventNum = 0; eventNum < Allevents.size(); eventNum++) {
+            Event SelectedEvent = Allevents.get(eventNum);
+            dlm.addElement(SelectedEvent.getName());
+
         }
+        list.setModel(dlm);
+        JButton details = new JButton("Details");
+        details.setBounds(1100, 200, 100, 50);
+        panel.add(details);
+
+        details.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                DetailedEvent detailedEvent = new DetailedEvent(id, Allevents.get(list.getSelectedIndex()));
+            }
+        });
 
         search.addMouseListener(new MouseAdapter() {
             @Override
@@ -103,7 +133,6 @@ public class UserDashboard {
 
         frame.setVisible(true);
     }
-
 
 
 }

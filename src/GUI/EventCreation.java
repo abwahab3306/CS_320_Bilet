@@ -1,8 +1,6 @@
 package GUI;
 
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.Toolkit;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -12,9 +10,22 @@ import Database.InsertData;
 
 public class EventCreation {
 
-    public EventCreation() {
+    private int organizerID;
+    private JFrame frame;
 
-        JFrame frame = new JFrame("New Event");
+    public EventCreation(int id) {
+
+        organizerID = id;
+        gui();
+    }
+
+    public JFrame getFrame(){
+        return frame;
+    }
+
+    public void gui(){
+
+        frame = new JFrame("New Event");
 
         Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
         frame.setSize(600, 450);
@@ -25,6 +36,7 @@ public class EventCreation {
         JPanel panel = new JPanel();
         panel.setLayout(null);
         frame.add(panel);
+        panel.setBackground(Color.gray);
 
         JLabel eventName = new JLabel("Event Name:");
         eventName.setFont(new Font("Calibri", Font.PLAIN, 15));
@@ -99,7 +111,7 @@ public class EventCreation {
                 int price = Integer.parseInt(priceText.getText());
                 String iban = ibanno.getText();
 
-                Model.Event event = new Model.Event(eventText.getText(), 5, ticket, date, locationText.getText(), price,
+                Model.Event event = new Model.Event(eventText.getText(), organizerID, ticket, date, locationText.getText(), price,
                         iban);
 
                 System.out.println(event.getName() + " " + event.getOrganizerId() + " " + event.getTicketNumber() + " " + event.getDate()

@@ -27,6 +27,11 @@ public class loginPage {
 
         usertype = type;
 
+        pageUI();
+    }
+
+    private void pageUI() {
+
 
         JFrame frame = new JFrame("LOGIN PAGE");
         frame.setSize(1920, 1080);
@@ -60,13 +65,25 @@ public class loginPage {
         panel.add(loginButton);
 
 
+        JButton forgetPassword = new JButton("Forget My Password!");
+        forgetPassword.setBounds(1000, 500, 200, 50);
+        panel.add(forgetPassword);
+
+        forgetPassword.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                forgotMyPassFrame passFrame = new forgotMyPassFrame(usertype);
+            }
+        });
+
+
         loginButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String emailEntered = mailEntry.getText();
                 String passwordEntered = passwordEntry.getText();
                 boolean what = false;
-                if (type.equals("Organizer")) {
+                if (usertype.equals("Organizer")) {
                     try {
                         what = getData.loginOrganizer(emailEntered, passwordEntered);
 

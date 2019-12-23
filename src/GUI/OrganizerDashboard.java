@@ -19,14 +19,23 @@ public class OrganizerDashboard {
     private String orgemail;
     private ArrayList<Event> myevents;
 
+    private JButton createEvent;
+    private JButton myEvents;
+    private JLabel events;
+    private JFrame myEventsFrame;
+    private JLabel eventsListLabel;
+
     public OrganizerDashboard(Organizer organizer) throws SQLException {
+
         id = organizer.getId();
         name = organizer.getName();
         lastname = organizer.getLastname();
         orgemail = organizer.getEmail();
 
+        organizerui();
+    }
 
-        myevents = getData.getEvents(false, orgemail);
+    public void organizerui() {
 
 
         JFrame frame = new JFrame("ORGANIZER DASHBOARD");
@@ -58,11 +67,11 @@ public class OrganizerDashboard {
         email.setForeground(Color.WHITE);
         panel.add(email);
 
-        JButton createEvent = new JButton("Create Event");
+        createEvent = new JButton("Create Event");
         createEvent.setBounds(100, 450, 130, 50);
         panel.add(createEvent);
 
-        JButton myEvents = new JButton("My Events");
+        myEvents = new JButton("My Events");
         myEvents.setBounds(340, 450, 130, 50);
         panel.add(myEvents);
 
@@ -71,19 +80,30 @@ public class OrganizerDashboard {
         panel.add(logout);
 
 
-        JLabel events = new JLabel("All Events");
+        events = new JLabel("All Events");
         events.setFont(new Font("Calibri", Font.BOLD, 32));
         events.setBounds(700, 60, 130, 50);
         events.setBackground(Color.WHITE);
         panel.add(events);
 
+        /*
+        //Events are added under the "All Events" label
+        int y = 100;
+        for(int i=0; i<myevents.size(); i++){
+            eventsListLabel = new JLabel(myevents.get(i).getName());
+            eventsListLabel.setBounds(700,y,100,50);
+
+            panel.add(eventsListLabel);
+            y += 50;
+        }
+*/
 
         createEvent.addActionListener(new ActionListener() {
 //            ArrayList<Event> events = getData.getEvents(true, orgemail);
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                EventCreation newEvent = new EventCreation();
+                EventCreation newEvent = new EventCreation(id);
 
             }
         });
@@ -108,11 +128,42 @@ public class OrganizerDashboard {
         frame.setVisible(true);
     }
 
+    public JButton getCreateEvent(){
+        return createEvent;
+    }
+
+    public JButton getMyEventsButton(){
+        return myEvents;
+    }
+
+    public JLabel getAllEvents(){
+        return events;
+    }
+
+    public JFrame getMyEventsFrame(){
+        return myEventsFrame;
+    }
+
+    public JLabel getAllEventsLabel(){
+        return eventsListLabel;
+    }
+
+    public ArrayList<Event> getMyEventsList(){
+        return myevents;
+    }
+
     private void myevents() {
+
+        try {
+            myevents = getData.getEvents(false, orgemail);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         if (myevents.size() < 1) {
             JOptionPane.showMessageDialog(null, "Sorry! You haven't created any event yet");
         } else {
+
             events_gui();
         }
 /*
@@ -125,23 +176,23 @@ public class OrganizerDashboard {
 
     private void events_gui() {
 
-        JFrame frame = new JFrame("My Events");
+        myEventsFrame = new JFrame("My Events");
 
         Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
-        frame.setSize(1000, 600);
-        int x = (int) ((dimension.getWidth() - frame.getWidth()) / 2);
-        int y = (int) ((dimension.getHeight() - frame.getHeight()) / 2);
-        frame.setLocation(x, y);
-//        frame.setLayout(new BorderLayout());
+        myEventsFrame.setSize(1000, 600);
+        int x = (int) ((dimension.getWidth() - myEventsFrame.getWidth()) / 2);
+        int y = (int) ((dimension.getHeight() - myEventsFrame.getHeight()) / 2);
+        myEventsFrame.setLocation(x, y);
 
-        frame.setVisible(true);
 
         JPanel listpanel = new JPanel();
-        frame.add(listpanel);
+        listpanel.setLayout(null);
+        myEventsFrame.add(listpanel);
 
         JList list = new JList();
         list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        list.setPreferredSize(new Dimension(180, 179));
+        list.setBounds(150, 50,500, 400);
+        list.setFont(new Font("Calibri", Font.PLAIN, 20));
         listpanel.add(list);
 
         DefaultListModel dlm = new DefaultListModel();
@@ -151,15 +202,9 @@ public class OrganizerDashboard {
         }
         list.setModel(dlm);
         JButton btnupdate = new JButton("Change");
+        btnupdate.setBounds(700, 200, 100, 50);
         listpanel.add(btnupdate);
 
-//        int a = i.getid ;
-//        UpdateData.updateEvent(a,newname,id,int ticketnum, int date, String location, int price, int ibanno);
-
-       /* JPanel bottom = new JPanel();
-        frame.add(bottom, BorderLayout.CENTER);
-*/
-//        bottom.setLayout(new FlowLayout());
 
         btnupdate.addActionListener(new ActionListener() {
             @Override
@@ -174,6 +219,7 @@ public class OrganizerDashboard {
 
                 frame.setVisible(true);
                 JPanel panel = new JPanel();
+                panel.setBackground(Color.gray);
                 panel.setLayout(null);
 
                 frame.add(panel);
@@ -269,6 +315,7 @@ public class OrganizerDashboard {
 
             }
         });
+        myEventsFrame.setVisible(true);
 
     }
 }

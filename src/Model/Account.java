@@ -14,6 +14,7 @@ public abstract class Account {
         this.password = password;
     }
 
+
     public int getId() {
         return id;
     }
@@ -62,5 +63,6 @@ public abstract class Account {
     public void setEmail(String s) {
         this.email = s;
     }
+
 
 }
