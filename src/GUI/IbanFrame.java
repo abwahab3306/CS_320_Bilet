@@ -14,6 +14,7 @@ public class IbanFrame {
     private static JButton button;
     private static JLabel txt, txt2, txt3;
     private static String iban;
+    private static JFrame frame;
 
     public IbanFrame(String Iban) {
 
@@ -24,7 +25,7 @@ public class IbanFrame {
     }
 
     public static void ui() {
-        JFrame frame = new JFrame("Payment");
+        frame = new JFrame("Payment");
 
         frame.setSize(500, 200);
 
@@ -74,7 +75,7 @@ public class IbanFrame {
 
         frame.setVisible(true);
 
-
     }
+    public JFrame getFrame() { return frame;};
 }
 

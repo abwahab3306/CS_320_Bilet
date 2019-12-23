@@ -22,6 +22,7 @@ public class DetailedEvent {
     private String date;
     private String Iban;
     private String orgname;
+    private JButton pay;
 
 
     public DetailedEvent(int id, Event event) {
@@ -54,10 +55,9 @@ public class DetailedEvent {
         panel.setLayout(null);
         frame.getContentPane().add(panel);
 
-        JButton pay = new JButton("Pay now!");
+        pay = new JButton("Pay now!");
         pay.setBounds(1000, 250, 100, 50);
         panel.add(pay);
-
 
         JLabel eventName = new JLabel("Name: " + name);
         eventName.setFont(new Font("Calibri", Font.PLAIN, 20));
@@ -113,7 +113,7 @@ public class DetailedEvent {
         }
         ticketNumChoice.setBounds(800, 250, 100, 75);
         ticketNumChoice.setBackground(Color.BLACK);
-        ticketNumChoice.setForeground(Color.WHITE);
+        ticketNumChoice.setForeground(Color.BLUE);
 
         panel.add(ticketNumChoice);
 
@@ -135,8 +135,8 @@ public class DetailedEvent {
 
         frame.setVisible(true);
 
-
     }
 
+    public JButton getPay() {return pay;};
 
 }
