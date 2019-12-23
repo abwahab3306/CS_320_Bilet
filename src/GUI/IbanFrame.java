@@ -10,7 +10,7 @@ import javax.swing.*;
 
 public class IbanFrame {
 
-    //    private static JTextField iban;
+
     private static JButton button;
     private static JLabel txt, txt2, txt3;
     private static String iban;
@@ -18,7 +18,7 @@ public class IbanFrame {
 
     public IbanFrame(String Iban) {
 
-//        Color color = new Color(128, 0, 0);
+
         iban = Iban;
 
         ui();
@@ -75,7 +75,9 @@ public class IbanFrame {
 
         frame.setVisible(true);
 
+
     }
-    public JFrame getFrame() { return frame;};
+    public JFrame getFrame() { return frame;}
+
 }
 
