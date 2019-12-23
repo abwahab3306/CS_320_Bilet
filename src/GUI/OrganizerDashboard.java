@@ -1,5 +1,6 @@
 package GUI;
 
+import Database.DeleteData;
 import Database.UpdateData;
 import Database.getData;
 import Model.Event;
@@ -128,27 +129,27 @@ public class OrganizerDashboard {
         frame.setVisible(true);
     }
 
-    public JButton getCreateEvent(){
+    public JButton getCreateEvent() {
         return createEvent;
     }
 
-    public JButton getMyEventsButton(){
+    public JButton getMyEventsButton() {
         return myEvents;
     }
 
-    public JLabel getAllEvents(){
+    public JLabel getAllEvents() {
         return events;
     }
 
-    public JFrame getMyEventsFrame(){
+    public JFrame getMyEventsFrame() {
         return myEventsFrame;
     }
 
-    public JLabel getAllEventsLabel(){
+    public JLabel getAllEventsLabel() {
         return eventsListLabel;
     }
 
-    public ArrayList<Event> getMyEventsList(){
+    public ArrayList<Event> getMyEventsList() {
         return myevents;
     }
 
@@ -191,7 +192,7 @@ public class OrganizerDashboard {
 
         JList list = new JList();
         list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        list.setBounds(150, 50,500, 400);
+        list.setBounds(150, 50, 500, 400);
         list.setFont(new Font("Calibri", Font.PLAIN, 20));
         listpanel.add(list);
 
@@ -205,6 +206,23 @@ public class OrganizerDashboard {
         btnupdate.setBounds(700, 200, 100, 50);
         listpanel.add(btnupdate);
 
+
+        JButton deleteEvent = new JButton("Delete Event");
+        deleteEvent.setBounds(700, 325, 150, 50);
+        listpanel.add(deleteEvent);
+
+        deleteEvent.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                int index = list.getSelectedIndex();
+                int eventid = myevents.get(index).getId();
+                DeleteData.deleteEvent(eventid);
+
+                dlm.removeElementAt(index);
+                JOptionPane.showMessageDialog(null, "Event Deleted Successfully!");
+            }
+        });
 
         btnupdate.addActionListener(new ActionListener() {
             @Override

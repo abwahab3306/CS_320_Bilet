@@ -8,8 +8,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -62,33 +60,12 @@ public class UserDashboard {
         events.setBounds(700, 40, 500, 50);
         panel.add(events);
 
-        JTextField search = new JTextField("Search here!");
-        search.setFont(new Font("Calibri", Font.PLAIN, 22));
-        search.setBounds(500, 110, 500, 50);
-        search.setVisible(true);
-        panel.add(search);
+        JLabel header = new JLabel("Upcoming Events");
+        header.setFont(new Font("Calibri", Font.PLAIN, 22));
+        header.setBounds(500, 110, 500, 50);
+        header.setVisible(true);
+        panel.add(header);
 
-//        int y = 150;
-//        JButton event = null;
-
-/*
-        for (int eventNumber = 0; eventNumber < Allevents.size(); eventNumber++) {
-            Event SelectedEvent = Allevents.get(eventNumber);
-            event = new JButton(SelectedEvent.getName());
-            event.setFont(new Font("Calibri", Font.PLAIN, 22));
-            event.setBounds(500, y + 10, 500, 100);
-            panel.add(event);
-            y += 100;
-
-            event.addMouseListener(new MouseAdapter() {
-                @Override
-                public void mouseClicked(MouseEvent e) {
-                    super.mouseClicked(e);
-                    DetailedEvent detailedEvent = new DetailedEvent(id, SelectedEvent);
-                }
-            });
-
-        }*/
 
         JList list = new JList();
         list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -114,13 +91,6 @@ public class UserDashboard {
             }
         });
 
-        search.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                super.mouseClicked(e);
-                //?
-            }
-        });
 
         logout.addActionListener(new ActionListener() {
             @Override
