@@ -1,6 +1,5 @@
 
 import Database.DB_Connection;
-import GUI.IbanFrame;
 import GUI.loginPage;
 import GUI.registerPage;
 

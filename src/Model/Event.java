@@ -19,7 +19,7 @@ public class Event {
         this.price = price;
         this.IBAN = IBAN;
     }
-    public void setId(int i){
+    public final void setId(int i){
         this.id = i;
     }
 

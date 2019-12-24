@@ -1,19 +1,16 @@
 package GUI;
 
 import Database.getData;
-import Model.Event;
+
 import Model.Organizer;
 import Model.User;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.net.Authenticator;
 import java.sql.SQLException;
-import java.util.ArrayList;
+
 
 public class loginPage {
 
@@ -91,7 +88,7 @@ public class loginPage {
                     } catch (SQLException ex) {
                         ex.printStackTrace();
                     }
-                    if (what == true) {
+                    if (what) {
                         message();
                         Organizer org = null;
                         try {
@@ -120,7 +117,7 @@ public class loginPage {
                         ex.printStackTrace();
                     }
 
-                    if (what == true) {
+                    if (what) {
                         message();
                         User user = null;
                         try {
