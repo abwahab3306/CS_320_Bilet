@@ -62,7 +62,7 @@ public class DBLoginAndRegisterTests {
 	public void testLoginUser() throws SQLException {
 		// already inserted user above
 		User user = new User("Furkan", "Karayer", "furkan.karayer@gmail.com", "password");
-		boolean login = getData.loginUser(user.getName(), user.getPassword()); 
+		boolean login = getData.loginUser(user.getEmail(), user.getPassword());
 		assertEquals(true, login);
 	}
 	
@@ -70,8 +70,29 @@ public class DBLoginAndRegisterTests {
 	public void testLoginOrganizer() throws SQLException {
 		// already inserted user above
 		Organizer organizer = new Organizer("Furkan", "Karayer", "furkan.karayer@gmail.com", "password");
-		boolean login = getData.loginOrganizer(organizer.getName(), organizer.getPassword()); 
+		boolean login = getData.loginOrganizer(organizer.getEmail(), organizer.getPassword());
 		assertEquals(true, login);
 	}
+
+	@Test
+	public void testForgotPassOrganizer() throws SQLException {
+		// already inserted user above
+		Organizer organizer = new Organizer("Furkan", "Karayer", "furkan.karayer@gmail.com", "newpass");
+		UpdateData.changePassword(organizer.getEmail(), true, organizer.getPassword());
+		boolean login = getData.loginOrganizer(organizer.getEmail(), organizer.getPassword());
+		assertEquals(true, login);
+	}
+
+	@Test
+	public void testForgotPassUser() throws SQLException {
+		// already inserted user above
+		Organizer organizer = new Organizer("Furkan", "Karayer", "furkan.karayer@gmail.com", "newpass");
+		UpdateData.changePassword(organizer.getEmail(),false, organizer.getPassword());
+		boolean login = getData.loginOrganizer(organizer.getEmail(), organizer.getPassword());
+		assertEquals(true, login);
+	}
+
+
+
 }
 

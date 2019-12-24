@@ -1,6 +1,6 @@
 
 import Database.DB_Connection;
-import GUI.loginPage;
+import  GUI.loginPage;
 import GUI.registerPage;
 
 import javax.swing.*;
