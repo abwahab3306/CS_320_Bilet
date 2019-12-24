@@ -11,6 +11,7 @@ import Database.InsertData;
 import Database.getData;
 import Model.Organizer;
 import Model.User;
+import  Database.UpdateData;
 
 public class DBLoginAndRegisterTests {
 	@Test
