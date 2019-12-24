@@ -2,7 +2,8 @@ package Tests;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import GUI.EventCreation;
+import Database.InsertData;
+import Database.getData;
 import GUI.OrganizerDashboard;
 import Model.Organizer;
 import Model.Event;
@@ -17,25 +18,38 @@ public class OrganizerDashboardTest {
         assertNotNull(dashboard.getCreateEvent());
         assertEquals("Create Event", dashboard.getCreateEvent().getText());
         dashboard.getCreateEvent().doClick();
-        Event event = new Event("ZorluPop1", 1, 5, "11.01.2019", "Zorlu", 100, "65736256");
-        EventCreation eventGUI = new EventCreation(event.getId());
-        //assertEquals("New Event", eventGUI.getFrame().getName());
+        Event event = new Event("ZorluPop1", 5, 150, "23.12.2019", "Zorlu", 100, "TR65736256");
+        InsertData.createEvent(event.getName(), event.getOrganizerId(), event.getTicketNumber(), event.getDate(),
+                event.getLocation(), event.getPrice(), event.getIBAN());
+        assertEquals("ZorluPop1", getData.getLastInsertedEvent().getName());
+        assertEquals(5, getData.getLastInsertedEvent().getOrganizerId());
+        assertEquals(150, getData.getLastInsertedEvent().getTicketNumber());
+        assertEquals("Zorlu", getData.getLastInsertedEvent().getLocation());
     }
 
     @Test
     public void testMyEventButton() throws SQLException {
-        OrganizerDashboard dashboard = new OrganizerDashboard(new Organizer("Hümeyra Ecem", "Öz", "hecemoz@hotmail.com", "sifre"));
+        Organizer organizer = new Organizer("Hümeyra Ecem", "Öz", "hecemoz@hotmail.com", "sifre");
+        OrganizerDashboard dashboard = new OrganizerDashboard(organizer);
         assertNotNull(dashboard.getMyEventsButton());
         assertEquals("My Events", dashboard.getMyEventsButton().getText());
         dashboard.getMyEventsButton().doClick();
-        assertEquals("My Events",dashboard.getMyEventsFrame().getName());
+        int eventnums;
+        eventnums = getData.getEvents(false, organizer.getEmail()).size();
+        if (eventnums < 1) {
+            assertEquals(true, dashboard.getEmpty());
+        } else {
+            assertEquals(false, dashboard.getEmpty());
+        }
+
     }
 
     @Test
-    public void testAllEventsLabel() throws SQLException{
+    public void testAllEventsLabel() throws SQLException {
         OrganizerDashboard dashboard = new OrganizerDashboard(new Organizer("Hümeyra Ecem", "Öz", "hecemoz@hotmail.com", "sifre"));
         assertNotNull(dashboard.getAllEvents());
         assertEquals("All Events", dashboard.getAllEvents().getText());
-        //assertEquals(dashboard.getMyEventsList().toString(),dashboard.getAllEventsLabel().getText());
+
     }
+
 }

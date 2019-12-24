@@ -24,9 +24,9 @@ public class OrganizerDashboard {
     private JButton myEvents;
     private JLabel events;
     private JFrame myEventsFrame;
-    private JLabel eventsListLabel;
+    private Boolean isEmpty;
 
-    public OrganizerDashboard(Organizer organizer) throws SQLException {
+    public OrganizerDashboard(Organizer organizer) throws SQLException{
 
         id = organizer.getId();
         name = organizer.getName();
@@ -87,20 +87,9 @@ public class OrganizerDashboard {
         events.setBackground(Color.WHITE);
         panel.add(events);
 
-        /*
-        //Events are added under the "All Events" label
-        int y = 100;
-        for(int i=0; i<myevents.size(); i++){
-            eventsListLabel = new JLabel(myevents.get(i).getName());
-            eventsListLabel.setBounds(700,y,100,50);
 
-            panel.add(eventsListLabel);
-            y += 50;
-        }
-*/
 
         createEvent.addActionListener(new ActionListener() {
-//            ArrayList<Event> events = getData.getEvents(true, orgemail);
 
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -145,12 +134,13 @@ public class OrganizerDashboard {
         return myEventsFrame;
     }
 
-    public JLabel getAllEventsLabel() {
-        return eventsListLabel;
-    }
 
     public ArrayList<Event> getMyEventsList() {
         return myevents;
+    }
+
+    public Boolean getEmpty() {
+        return isEmpty;
     }
 
     private void myevents() {
@@ -162,16 +152,14 @@ public class OrganizerDashboard {
         }
 
         if (myevents.size() < 1) {
+            isEmpty = true;
             JOptionPane.showMessageDialog(null, "Sorry! You haven't created any event yet");
         } else {
 
+            isEmpty = false;
             events_gui();
         }
-/*
-            for (int i = 0; i < myevents.size(); i++) {
-                System.out.println(i + "--" + myevents.get(i).getName());
 
-            }*/
 
     }
 
@@ -320,8 +308,7 @@ public class OrganizerDashboard {
                         int price = Integer.parseInt(priceText.getText());
                         String iban = ibanno.getText();
 
-                        System.out.println("id = " + id + " orgid = " + orgid + " name= " + name + " ticket = " + ticket + " date= " + date + " location= "
-                                + location + " price = " + price + " iban= " + iban);
+
                         UpdateData.updateEvent(id, name, orgid, ticket, date, location, price, iban);
 
                         JOptionPane.showMessageDialog(null, "Event updated succesfully!");

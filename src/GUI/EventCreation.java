@@ -19,11 +19,11 @@ public class EventCreation {
         gui();
     }
 
-    public JFrame getFrame(){
+    public JFrame getFrame() {
         return frame;
     }
 
-    public void gui(){
+    public void gui() {
 
         frame = new JFrame("New Event");
 
