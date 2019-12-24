@@ -1,6 +1,7 @@
 
 import Database.DB_Connection;
-import  GUI.loginPage;
+import GUI.IbanFrame;
+import GUI.loginPage;
 import GUI.registerPage;
 
 import javax.swing.*;
@@ -56,7 +57,6 @@ public class main {
 
         JPanel panel = new JPanel();
         frame.add(panel, BorderLayout.NORTH);
-
 
 
         JRadioButton radioUser = new JRadioButton("User");

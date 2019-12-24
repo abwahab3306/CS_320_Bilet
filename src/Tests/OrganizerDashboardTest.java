@@ -30,6 +30,7 @@ public class OrganizerDashboardTest {
     @Test
     public void testMyEventButton() throws SQLException {
         Organizer organizer = new Organizer("Hümeyra Ecem", "Öz", "hecemoz@hotmail.com", "sifre");
+        InsertData.insertAccount(true, organizer.getName(), organizer.getLastname(), organizer.getEmail(), organizer.getPassword());
         OrganizerDashboard dashboard = new OrganizerDashboard(organizer);
         assertNotNull(dashboard.getMyEventsButton());
         assertEquals("My Events", dashboard.getMyEventsButton().getText());

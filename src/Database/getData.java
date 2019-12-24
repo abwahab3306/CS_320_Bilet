@@ -101,9 +101,18 @@ public class getData {
 
     }
 
-    public static ArrayList<String> getSoldtickts(String qurey) throws SQLException {
-        ArrayList<String> myEvents = new ArrayList<String>();
-        return myEvents;
+    public static int getLastPurchasedTicketNumber() throws SQLException {
+        DB_Connection connection = new DB_Connection();
+        PreparedStatement ps = connection.conn.prepareStatement("SELECT * FROM reservations");
+        ResultSet rs = ps.executeQuery();
+
+        int number_of_tickets = 0;
+        while (rs.next()) {
+            number_of_tickets = Integer.parseInt(rs.getString("number_of_tickets"));
+
+        }
+
+        return number_of_tickets;
     }
 
 

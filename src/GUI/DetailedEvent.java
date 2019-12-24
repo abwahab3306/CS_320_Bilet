@@ -137,6 +137,6 @@ public class DetailedEvent {
 
     }
 
-    public JButton getPay() {return pay;};
+    public JButton getPay() {return pay;}
 
 }

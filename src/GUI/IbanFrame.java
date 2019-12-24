@@ -18,14 +18,14 @@ public class IbanFrame {
 
     public IbanFrame(String Iban) {
 
-
+        frame = new JFrame("Payment");
         iban = Iban;
 
         ui();
     }
 
     public static void ui() {
-        frame = new JFrame("Payment");
+
 
         frame.setSize(500, 200);
 

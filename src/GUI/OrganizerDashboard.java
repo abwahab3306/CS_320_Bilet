@@ -33,6 +33,8 @@ public class OrganizerDashboard {
         lastname = organizer.getLastname();
         orgemail = organizer.getEmail();
 
+        isEmpty = true;
+
         organizerui();
     }
 

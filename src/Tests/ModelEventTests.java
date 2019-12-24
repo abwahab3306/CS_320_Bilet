@@ -18,7 +18,7 @@ public class ModelEventTests {
     @Test
     public void testEventConstructor2() {
         Event event = new Event("ZorluPop1", 5, 5, "11.01.2019", "Zorlu", 100, "65736256");
-        assertEquals(1, event.getOrganizerId());
+        assertEquals(5, event.getOrganizerId());
     }
 
     @Test
